@@ -4,13 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GROSN SIMMA – 2x ziehen | bayrisch Blatt und Stoff</title>
-  <meta name="description" content="GROSN SIMMA – 2x ziehen. bayrisch Blatt und Stoff. Kontakt: servus@grosnsimma.de" />
+  <meta name="description" content="GROSN SIMMA – 2x ziehen. bayrisch Blatt und Stoff. Anfrage: servus@grosnsimma.de" />
   <style>
-    :root {
-      --blattgruen: #2b7a3d;
-      --blattgruen-glow: rgba(43, 122, 61, 0.55);
-    }
-
     * {
       box-sizing: border-box;
       margin: 0;
@@ -51,14 +46,22 @@
       pointer-events: none;
     }
 
-    .karte-rahmen {
-      position: relative;
+    .karte-link {
       display: inline-flex;
       align-items: center;
       justify-content: center;
       transform: scale(2.55);
       transform-origin: center center;
+      text-decoration: none;
+      cursor: pointer;
       pointer-events: auto;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .karte-link:focus-visible {
+      outline: 2px solid rgba(43, 122, 61, 0.7);
+      outline-offset: 4px;
+      border-radius: 6px;
     }
 
     .karte-bild {
@@ -75,32 +78,8 @@
       -webkit-user-drag: none;
     }
 
-    /* Passgenaue Klick- und Hover-Fläche direkt auf servus@grosnsimma.de */
-    .mail-link {
-      position: absolute;
-      left: 51.3%;
-      bottom: 2.3%;
-      width: 12.2%;
-      height: 2.2%;
-      transform: translate(-50%, 0) rotate(-3.2deg);
-      color: transparent;
-      font-size: 0;
-      line-height: 0;
-      text-decoration: none;
-      border-bottom: 1.5px solid transparent;
-      cursor: pointer;
-      transition: border-color 0.22s ease, filter 0.22s ease;
-    }
-
-    .mail-link:hover,
-    .mail-link:focus-visible {
-      border-bottom-color: var(--blattgruen);
-      filter: drop-shadow(0 0 5px var(--blattgruen-glow));
-      outline: none;
-    }
-
     @media (min-width: 768px) {
-      .karte-rahmen {
+      .karte-link {
         transform: scale(1.18);
       }
 
@@ -128,18 +107,17 @@
   <div class="tisch-hintergrund" aria-hidden="true"></div>
 
   <main class="buehne">
-    <div class="karte-rahmen">
+    <a
+      href="mailto:servus@grosnsimma.de?subject=Anfrage%20GROSN%20SIMMA"
+      class="karte-link"
+      aria-label="Anfrage an servus@grosnsimma.de senden"
+    >
       <img
         src="karte.png"
         alt="GROSN SIMMA – 2x ziehen, bayrisch Blatt und Stoff, servus@grosnsimma.de"
         class="karte-bild"
       />
-      <a
-        href="mailto:servus@grosnsimma.de"
-        class="mail-link"
-        aria-label="E-Mail an servus@grosnsimma.de senden"
-      >servus@grosnsimma.de</a>
-    </div>
+    </a>
   </main>
 </body>
 </html>
