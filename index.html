@@ -4,21 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GROSN SIMMA – 2x ziehen | Bayrisch Blatt und Stoff</title>
-  <meta name="description" content="GROSN SIMMA – 2x ziehen. Bayrisch Blatt und Stoff. Kontakt: servus@grosnsimma.de" />
+  <meta name="description" content="GROSN SIMMA – 2x ziehen. Bayrisch Blatt und Stoff. servus@grosnsimma.de" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700;900&family=Cormorant+Garamond:ital,wght@0,600;0,700;1,600;1,700&family=Playfair+Display:wght@800;900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --card-light: #f4eedc;
-      --card-mid: #e9dfc5;
-      --card-edge: #d8caa7;
-      --ink: #181916;
-      --leaf-green: #246334;
-      --leaf-dark: #13351b;
-      --leaf-hover: #2d7e41;
-      --stem-yellow: #e0be3b;
-      --shield-red: #9b261f;
+      --leaf-hover: #2b7a3d;
+      --ink: #191a17;
     }
 
     * {
@@ -28,382 +21,59 @@
     }
 
     html, body {
-      min-height: 100%;
+      height: 100%;
     }
 
     body {
       min-height: 100vh;
-      display: flex;
+      width: 100%;
+      background-color: #7c6244;
+      background-image: url('karte-tisch.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      position: relative;
+      overflow-x: hidden;
+      font-family: 'Cormorant Garamond', Georgia, serif;
+    }
+
+    /* Klickbare Mail-Fläche über dem unteren Textbereich des Bildes */
+    .mail-trigger {
+      position: fixed;
+      left: 50%;
+      bottom: 6.2%;
+      transform: translateX(-50%) rotate(-4.5deg);
+      z-index: 10;
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: clamp(18px, 4vw, 44px) 16px;
-      background-color: #b7aea0;
-      background-image:
-        radial-gradient(circle at 76% 24%, rgba(255, 249, 235, 0.24) 0%, rgba(28, 23, 18, 0.38) 100%),
-        url('tisch.jpg'),
-        repeating-linear-gradient(0deg, rgba(60, 52, 44, 0.06) 0px, rgba(60, 52, 44, 0.06) 1px, transparent 1px, transparent 3px),
-        repeating-linear-gradient(90deg, rgba(60, 52, 44, 0.06) 0px, rgba(60, 52, 44, 0.06) 1px, transparent 1px, transparent 3px);
-      background-size: cover, cover, 3px 3px, 3px 3px;
-      background-position: center, center, 0 0, 0 0;
-      background-attachment: fixed;
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      color: var(--ink);
-    }
-
-    /* Fotorealistische Spielkarte auf dem Wirtshaustisch */
-    .playing-card {
-      position: relative;
-      width: 100%;
-      max-width: 410px;
-      /* Leicht unregelmäßige, stumpf gespielte Kartonecken */
-      border-radius: 21px 24px 20px 23px;
-      padding: 15px 15px 17px;
-      background:
-        /* Sanfter Lichteinfall von oben rechts wie auf dem Tischfoto */
-        radial-gradient(circle at 75% 18%, rgba(255, 253, 246, 0.65) 0%, transparent 50%),
-        /* Abgegriffene dunklere Kanten & Ecken */
-        radial-gradient(ellipse at 50% 50%, transparent 62%, rgba(125, 108, 76, 0.24) 100%),
-        linear-gradient(162deg, var(--card-light) 0%, var(--card-mid) 56%, var(--card-edge) 100%);
-      box-shadow:
-        /* Tiefer Kontaktschatten + weicher Raumschatten auf dem Tisch */
-        0 2px 4px rgba(15, 12, 8, 0.35),
-        0 14px 28px rgba(15, 12, 8, 0.42),
-        0 28px 54px rgba(15, 12, 8, 0.32),
-        /* Kartondicke & Lichtkante oben/links */
-        inset 1px 1px 1px rgba(255, 255, 255, 0.78),
-        inset -1.5px -1.5px 2px rgba(96, 82, 56, 0.42),
-        inset 0 0 20px rgba(138, 120, 86, 0.24);
-      transform: rotate(-1.35deg);
-      transition: transform 0.35s ease, box-shadow 0.35s ease;
-      overflow: hidden;
-    }
-
-    @media (hover: hover) {
-      .playing-card:hover {
-        transform: rotate(-0.5deg) translateY(-3px);
-        box-shadow:
-          0 4px 8px rgba(15, 12, 8, 0.35),
-          0 20px 36px rgba(15, 12, 8, 0.46),
-          0 34px 62px rgba(15, 12, 8, 0.34),
-          inset 1px 1px 1px rgba(255, 255, 255, 0.82),
-          inset -1.5px -1.5px 2px rgba(96, 82, 56, 0.42),
-          inset 0 0 20px rgba(138, 120, 86, 0.24);
-      }
-    }
-
-    /* Echte SVG-Papierfaser-Textur über die gesamte Karte */
-    .paper-texture {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 4;
-      opacity: 0.22;
-      mix-blend-mode: multiply;
-    }
-
-    /* Realistische Knicke, Falzlinien & Gebrauchsspuren */
-    .card-creases {
-      position: absolute;
-      inset: 0;
-      pointer-events: none;
-      z-index: 5;
-      border-radius: inherit;
-      background:
-        /* Hauptknick quer durch die Karte mit heller Bruchkante & Schatten daneben */
-        linear-gradient(174deg,
-          transparent 48.8%,
-          rgba(78, 64, 42, 0.14) 49.3%,
-          rgba(255, 254, 248, 0.42) 49.7%,
-          rgba(68, 55, 36, 0.18) 50.2%,
-          transparent 50.9%),
-        /* Diagonaler Knick oben links über die Ecke */
-        linear-gradient(132deg,
-          transparent 13.2%,
-          rgba(75, 62, 40, 0.13) 13.7%,
-          rgba(255, 254, 248, 0.36) 14.1%,
-          rgba(70, 56, 36, 0.16) 14.5%,
-          transparent 15.2%),
-        /* Zweiter feiner Diagonal-Knick unten rechts */
-        linear-gradient(318deg,
-          transparent 11.5%,
-          rgba(75, 62, 40, 0.12) 12.0%,
-          rgba(255, 254, 248, 0.32) 12.4%,
-          rgba(70, 56, 36, 0.15) 12.8%,
-          transparent 13.5%),
-        /* Leichte Griffspuren / Patina an den Seitenrändern */
-        radial-gradient(circle at 4% 52%, rgba(112, 95, 65, 0.16) 0%, transparent 18%),
-        radial-gradient(circle at 96% 48%, rgba(112, 95, 65, 0.16) 0%, transparent 18%);
-    }
-
-    /* Karteninhalt */
-    .card-surface {
-      position: relative;
-      z-index: 2;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-    .illustration-wrap {
-      width: 100%;
-    }
-
-    .illustration-wrap svg {
-      width: 100%;
-      height: auto;
-      display: block;
-    }
-
-    /* Typografie unter dem 7. Blatt */
-    .brand-block {
-      position: relative;
-      z-index: 3;
-      text-align: center;
-      margin-top: -12px;
-      padding: 0 38px 6px;
-    }
-
-    .brand-title {
-      font-family: 'Cinzel', Georgia, serif;
-      font-weight: 900;
-      font-size: clamp(1.55rem, 5.6vw, 2.02rem);
-      line-height: 1.03;
-      letter-spacing: 0.03em;
-      color: var(--leaf-dark);
-      text-transform: uppercase;
-      text-shadow: 0 1px 0 rgba(255, 255, 255, 0.45);
-    }
-
-    .brand-sub {
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-style: italic;
-      font-weight: 700;
-      font-size: clamp(1.08rem, 3.6vw, 1.28rem);
-      color: var(--leaf-green);
-      margin: 2px 0 6px;
-      letter-spacing: 0.02em;
-    }
-
-    .divider {
-      width: 48px;
-      height: 1.4px;
-      background: linear-gradient(90deg, transparent, rgba(138, 108, 42, 0.75), transparent);
-      margin: 0 auto 6px;
-    }
-
-    .brand-tagline {
-      font-size: clamp(0.95rem, 3.1vw, 1.05rem);
-      font-weight: 700;
-      color: var(--ink);
-      margin-bottom: 3px;
-    }
-
-    .mail-link {
-      position: relative;
-      z-index: 6;
-      display: inline-block;
-      font-family: 'Cormorant Garamond', Georgia, serif;
-      font-size: clamp(0.98rem, 3.2vw, 1.1rem);
-      font-weight: 700;
-      color: var(--ink);
+      padding: 4px 12px;
+      border-radius: 6px;
+      color: transparent;
       text-decoration: none;
-      border-bottom: 1.5px solid rgba(24, 25, 22, 0.38);
-      padding: 1px 4px 2px;
-      border-radius: 3px;
-      transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+      font-size: clamp(0.85rem, 2.2vw, 1.15rem);
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      cursor: pointer;
+      transition: color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
     }
 
-    .mail-link:hover,
-    .mail-link:focus-visible {
-      color: var(--leaf-hover);
-      border-bottom-color: var(--leaf-hover);
-      background-color: rgba(36, 99, 52, 0.10);
+    .mail-trigger:hover,
+    .mail-trigger:focus-visible {
+      color: #f4efe2;
+      background-color: var(--leaf-hover);
+      box-shadow: 0 4px 14px rgba(20, 46, 25, 0.35);
       outline: none;
     }
   </style>
 </head>
 <body>
 
-  <main class="playing-card" aria-label="Grosn Simma Spielkarte">
-    <!-- Feine Kartonfaser über SVG-Filter -->
-    <svg class="paper-texture" aria-hidden="true">
-      <filter id="cardboard-grain">
-        <feTurbulence type="fractalNoise" baseFrequency="0.78" numOctaves="3" stitchTiles="stitch" />
-        <feColorMatrix type="saturate" values="0" />
-      </filter>
-      <rect width="100%" height="100%" filter="url(#cardboard-grain)" />
-    </svg>
-
-    <!-- Knicke & Patina -->
-    <div class="card-creases" aria-hidden="true"></div>
-
-    <div class="card-surface">
-      <div class="illustration-wrap">
-        <svg viewBox="0 0 340 475" role="img" aria-label="Bayerische Gras-Sieben mit sieben Hanfblättern und dem Wappen Erst mischn, dann ziehn">
-          <defs>
-            <!-- 7-fingriges Hanfblatt im klassischen Holzschnitt-Stil -->
-            <g id="hemp-leaf">
-              <path d="M 0,6 L 0,25" stroke="#181916" stroke-width="2.3" stroke-linecap="round" />
-              <path d="
-                M 0,7
-                C -6,13 -16,17 -24,14 C -18,9 -12,6 -6,4
-                C -18,4 -32,1 -43,-8 C -31,-10 -19,-7 -8,-1
-                C -21,-11 -33,-24 -39,-41 C -26,-34 -15,-22 -6,-7
-                C -9,-27 -7,-49 0,-68
-                C 7,-49 9,-27 6,-7
-                C 15,-22 26,-34 39,-41 C 33,-24 21,-11 8,-1
-                C 19,-7 31,-10 43,-8 C 32,1 18,4 6,4
-                C 12,6 18,9 24,14 C 16,17 6,13 0,7 Z"
-                fill="#246334"
-                stroke="#181916"
-                stroke-width="2"
-                stroke-linejoin="round"
-              />
-              <!-- Blattrippen -->
-              <path d="
-                M 0,6 L 0,-60
-                M 0,4 L -34,-35
-                M 0,4 L 34,-35
-                M 0,5 L -37,-7
-                M 0,5 L 37,-7
-                M 0,6 L -20,12
-                M 0,6 L 20,12"
-                stroke="#181916"
-                stroke-width="1.15"
-                stroke-linecap="round"
-                fill="none"
-              />
-              <!-- Schraffur -->
-              <path d="
-                M -4,-22 L 4,-22 M -5,-28 L 5,-28 M -4,-34 L 4,-34 M -3,-40 L 3,-40
-                M -15,-12 L -11,-17 M -20,-16 L -15,-22 M -25,-21 L -20,-27
-                M 15,-12 L 11,-17 M 20,-16 L 15,-22 M 25,-21 L 20,-27
-                M -16,-1 L -15,-6 M -23,-2 L -22,-7
-                M 16,-1 L 15,-6 M 23,-2 L 22,-7"
-                stroke="#181916"
-                stroke-width="0.95"
-                stroke-linecap="round"
-                fill="none"
-              />
-            </g>
-
-            <!-- Kleines Ecken-Symbol (7 + Hanfblatt ohne Kasten!) -->
-            <g id="corner-index">
-              <text x="0" y="0" text-anchor="middle" fill="#181916" font-family="'Playfair Display', Georgia, serif" font-weight="900" font-size="25">7</text>
-              <use href="#hemp-leaf" transform="translate(0, 17) scale(0.23)" />
-            </g>
-
-            <!-- Rotes Mittel-Ornament -->
-            <g id="center-ornament">
-              <circle cx="0" cy="-13" r="4.5" fill="#e0be3b" stroke="#181916" stroke-width="1.5" />
-              <path d="M -6,-8 L 6,-8 L 8,2 L 4,5 L 5,11 L -5,11 L -4,5 L -8,2 Z" fill="#9b261f" stroke="#181916" stroke-width="1.5" stroke-linejoin="round" />
-              <circle cx="0" cy="0" r="2.2" fill="#e0be3b" />
-            </g>
-          </defs>
-
-          <!-- Original-Kartenrahmen: offen an den 4 Ecken (wie bei der echten Gras-7!) -->
-          <g fill="none" stroke="#181916" stroke-linecap="round">
-            <!-- Obere Linie zwischen den Ecken -->
-            <path d="M 46,12 L 294,12" stroke-width="1.6" />
-            <path d="M 48,16 L 292,16" stroke-width="0.8" opacity="0.7" />
-            <!-- Linke Seitenlinie zwischen oben & unten -->
-            <path d="M 18,74 L 18,452" stroke-width="1.6" />
-            <path d="M 22,76 L 22,450" stroke-width="0.8" opacity="0.7" />
-            <!-- Rechte Seitenlinie zwischen oben & unten -->
-            <path d="M 322,74 L 322,452" stroke-width="1.6" />
-            <path d="M 318,76 L 318,450" stroke-width="0.8" opacity="0.7" />
-          </g>
-
-          <!-- Die 4 Ecken-Indizes (frei stehend auf dem Karton, ohne Kasten!) -->
-          <use href="#corner-index" transform="translate(22, 33)" />
-          <use href="#corner-index" transform="translate(318, 33)" />
-          <use href="#corner-index" transform="translate(22, 492) rotate(180)" />
-          <use href="#corner-index" transform="translate(318, 492) rotate(180)" />
-
-          <!-- Gelbe Rankenstiele zu allen 7 Blättern -->
-          <g stroke="#181916" stroke-width="5.2" stroke-linecap="round" fill="none">
-            <path d="M 170,136 Q 130,108 92,112" />
-            <path d="M 170,180 Q 130,166 90,172" />
-            <path d="M 170,244 Q 130,258 90,252" />
-            <path d="M 170,136 Q 210,108 248,112" />
-            <path d="M 170,180 Q 210,166 250,172" />
-            <path d="M 170,244 Q 210,258 250,252" />
-            <path d="M 170,296 L 170,360" />
-          </g>
-          <g stroke="#e0be3b" stroke-width="2.6" stroke-linecap="round" fill="none">
-            <path d="M 170,136 Q 130,108 92,112" />
-            <path d="M 170,180 Q 130,166 90,172" />
-            <path d="M 170,244 Q 130,258 90,252" />
-            <path d="M 170,136 Q 210,108 248,112" />
-            <path d="M 170,180 Q 210,166 250,172" />
-            <path d="M 170,244 Q 210,258 250,252" />
-            <path d="M 170,296 L 170,360" />
-          </g>
-
-          <!-- Mittelachse -->
-          <g transform="translate(170, 162)"><use href="#center-ornament" /></g>
-          <g transform="translate(170, 212)">
-            <circle cx="0" cy="0" r="8.5" fill="#e0be3b" stroke="#181916" stroke-width="1.6" />
-            <circle cx="0" cy="0" r="4.5" fill="none" stroke="#181916" stroke-width="1" />
-            <circle cx="0" cy="0" r="1.5" fill="#181916" />
-          </g>
-          <g transform="translate(170, 246)"><use href="#center-ornament" /></g>
-          <g transform="translate(170, 286)"><use href="#center-ornament" /></g>
-
-          <!-- 3 links, 3 rechts, 1 unten -->
-          <use href="#hemp-leaf" transform="translate(90, 114) rotate(-78) scale(1.1)" />
-          <use href="#hemp-leaf" transform="translate(88, 180) rotate(-86) scale(1.12)" />
-          <use href="#hemp-leaf" transform="translate(90, 248) rotate(-96) scale(1.1)" />
-
-          <use href="#hemp-leaf" transform="translate(250, 114) rotate(78) scale(1.1)" />
-          <use href="#hemp-leaf" transform="translate(252, 180) rotate(86) scale(1.12)" />
-          <use href="#hemp-leaf" transform="translate(250, 248) rotate(96) scale(1.1)" />
-
-          <use href="#hemp-leaf" transform="translate(170, 360) rotate(180) scale(1.18)" />
-
-          <!-- Sauberes rotes Wappenschild mit großzügigem Abstand um die Schrift -->
-          <g transform="translate(170, 68)">
-            <path d="
-              M -64,-34
-              Q -30,-28 0,-37
-              Q 30,-28 64,-34
-              L 60,8
-              Q 57,30 0,43
-              Q -57,30 -60,8 Z"
-              fill="#9b261f"
-              stroke="#181916"
-              stroke-width="2"
-              stroke-linejoin="round"
-            />
-            <path d="
-              M -58,-29
-              Q -28,-24 0,-32
-              Q 28,-24 58,-29
-              L 54,7
-              Q 51,25 0,37
-              Q -51,25 -54,7 Z"
-              fill="none"
-              stroke="rgba(244, 238, 220, 0.5)"
-              stroke-width="1"
-            />
-            <text x="0" y="-3" text-anchor="middle" fill="#f4eedc" font-family="'Cinzel', Georgia, serif" font-weight="900" font-size="11" letter-spacing="0.9">ERST MISCHN</text>
-            <text x="0" y="14" text-anchor="middle" fill="#f4eedc" font-family="'Cinzel', Georgia, serif" font-weight="900" font-size="11" letter-spacing="0.9">DANN ZIEHN</text>
-          </g>
-        </svg>
-      </div>
-
-      <!-- Text & Mail (mit Platz links/rechts für die unteren Ecken-Siebener) -->
-      <div class="brand-block">
-        <h1 class="brand-title">Grosn Simma</h1>
-        <p class="brand-sub">— 2x ziehen —</p>
-        <div class="divider" aria-hidden="true"></div>
-        <p class="brand-tagline">Bayrisch Blatt und Stoff.</p>
-        <a class="mail-link" href="mailto:servus@grosnsimma.de">servus@grosnsimma.de</a>
-      </div>
-    </div>
-  </main>
+  <a
+    class="mail-trigger"
+    href="mailto:servus@grosnsimma.de"
+    aria-label="E-Mail an servus@grosnsimma.de senden"
+  >servus@grosnsimma.de</a>
 
 </body>
 </html>
