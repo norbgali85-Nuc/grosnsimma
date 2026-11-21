@@ -19,33 +19,63 @@
 
     html, body {
       width: 100%;
-      height: 100%;
-      background-color: #3a2b1d;
-      overflow: hidden;
+      min-height: 100%;
+      background-color: #b7aea0;
+      overflow-x: hidden;
     }
 
-    .buehne {
-      position: relative;
-      width: 100vw;
-      height: 100vh;
+    /* Fixierter Wirtshaustisch (tisch.jpg) im Hintergrund */
+    .tisch-hintergrund {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background-color: #b7aea0;
+      background-image:
+        radial-gradient(circle at 78% 22%, rgba(255, 250, 238, 0.16) 0%, rgba(32, 26, 20, 0.25) 100%),
+        url('tisch.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      pointer-events: none;
+    }
+
+    /* Fixierte Bühne in der Mitte – bleibt beim Scrollen genau da liegen */
+    .buehne-fix {
+      position: fixed;
+      inset: 0;
+      z-index: 2;
       display: flex;
       align-items: center;
       justify-content: center;
-      background-color: #3a2b1d;
+      padding: 20px;
+      pointer-events: none;
+    }
+
+    .karte-wrapper {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      max-width: min(92vw, 430px);
+      max-height: 92vh;
+      pointer-events: auto;
     }
 
     .karte-bild {
       display: block;
       max-width: 100%;
-      max-height: 100%;
+      max-height: 92vh;
       width: auto;
       height: auto;
-      object-fit: contain;
+      border-radius: 18px;
+      box-shadow:
+        0 24px 48px rgba(20, 16, 12, 0.42),
+        0 6px 14px rgba(20, 16, 12, 0.24);
       user-select: none;
       -webkit-user-drag: none;
     }
 
-    /* Klickbarer Bereich direkt über servus@grosnsimma.de unten auf der Karte */
+    /* Klickbare Mail-Fläche über servus@grosnsimma.de */
     .mail-link {
       position: absolute;
       left: 51.5%;
@@ -55,7 +85,7 @@
       border-radius: 5px;
       color: transparent;
       font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(11px, 1.35vw, 18px);
+      font-size: clamp(11px, 1.35vw, 17px);
       font-weight: 700;
       text-decoration: none;
       white-space: nowrap;
@@ -73,17 +103,21 @@
   </style>
 </head>
 <body>
-  <main class="buehne">
-    <img
-      src="karte-tisch.jpg"
-      alt="GROSN SIMMA – 2x ziehen, bayrisch Blatt und Stoff, servus@grosnsimma.de"
-      class="karte-bild"
-    />
-    <a
-      href="mailto:servus@grosnsimma.de"
-      class="mail-link"
-      aria-label="E-Mail an servus@grosnsimma.de senden"
-    >servus@grosnsimma.de</a>
+  <div class="tisch-hintergrund" aria-hidden="true"></div>
+
+  <main class="buehne-fix">
+    <div class="karte-wrapper">
+      <img
+        src="karte.png"
+        alt="GROSN SIMMA – 2x ziehen, bayrisch Blatt und Stoff, servus@grosnsimma.de"
+        class="karte-bild"
+      />
+      <a
+        href="mailto:servus@grosnsimma.de"
+        class="mail-link"
+        aria-label="E-Mail an servus@grosnsimma.de senden"
+      >servus@grosnsimma.de</a>
+    </div>
   </main>
 </body>
 </html>
