@@ -3,15 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>GROSN SIMMA – 2x ziehen | Bayrisch Blatt und Stoff</title>
-  <meta name="description" content="GROSN SIMMA – 2x ziehen. Bayrisch Blatt und Stoff. servus@grosnsimma.de" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&display=swap" rel="stylesheet" />
+  <title>GROSN SIMMA – 2x ziehen | bayrisch Blatt und Stoff</title>
+  <meta name="description" content="GROSN SIMMA – 2x ziehen. bayrisch Blatt und Stoff. servus@grosnsimma.de" />
   <style>
     :root {
-      --leaf-hover: #2b7a3d;
-      --ink: #191a17;
+      --blattgruen: #286e37;
+      --blattgruen-hell: #e9f5ec;
     }
 
     * {
@@ -21,59 +18,72 @@
     }
 
     html, body {
-      height: 100%;
-    }
-
-    body {
-      min-height: 100vh;
       width: 100%;
-      background-color: #7c6244;
-      background-image: url('karte-tisch.jpg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      position: relative;
-      overflow-x: hidden;
-      font-family: 'Cormorant Garamond', Georgia, serif;
+      height: 100%;
+      background-color: #3a2b1d;
+      overflow: hidden;
     }
 
-    /* Klickbare Mail-Fläche über dem unteren Textbereich des Bildes */
-    .mail-trigger {
-      position: fixed;
-      left: 50%;
-      bottom: 6.2%;
-      transform: translateX(-50%) rotate(-4.5deg);
-      z-index: 10;
-      display: inline-flex;
+    .buehne {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
       align-items: center;
       justify-content: center;
-      padding: 4px 12px;
-      border-radius: 6px;
-      color: transparent;
-      text-decoration: none;
-      font-size: clamp(0.85rem, 2.2vw, 1.15rem);
-      font-weight: 700;
-      letter-spacing: 0.01em;
-      cursor: pointer;
-      transition: color 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+      background-color: #3a2b1d;
     }
 
-    .mail-trigger:hover,
-    .mail-trigger:focus-visible {
-      color: #f4efe2;
-      background-color: var(--leaf-hover);
-      box-shadow: 0 4px 14px rgba(20, 46, 25, 0.35);
+    .karte-bild {
+      display: block;
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    /* Klickbarer Bereich direkt über servus@grosnsimma.de unten auf der Karte */
+    .mail-link {
+      position: absolute;
+      left: 51.5%;
+      bottom: 8.2%;
+      transform: translate(-50%, 0) rotate(-3.5deg);
+      padding: 3px 10px;
+      border-radius: 5px;
+      color: transparent;
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(11px, 1.35vw, 18px);
+      font-weight: 700;
+      text-decoration: none;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: background-color 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .mail-link:hover,
+    .mail-link:focus-visible {
+      background-color: var(--blattgruen);
+      color: var(--blattgruen-hell);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
       outline: none;
     }
   </style>
 </head>
 <body>
-
-  <a
-    class="mail-trigger"
-    href="mailto:servus@grosnsimma.de"
-    aria-label="E-Mail an servus@grosnsimma.de senden"
-  >servus@grosnsimma.de</a>
-
+  <main class="buehne">
+    <img
+      src="karte-tisch.jpg"
+      alt="GROSN SIMMA – 2x ziehen, bayrisch Blatt und Stoff, servus@grosnsimma.de"
+      class="karte-bild"
+    />
+    <a
+      href="mailto:servus@grosnsimma.de"
+      class="mail-link"
+      aria-label="E-Mail an servus@grosnsimma.de senden"
+    >servus@grosnsimma.de</a>
+  </main>
 </body>
 </html>
