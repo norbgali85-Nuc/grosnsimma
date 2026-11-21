@@ -41,7 +41,7 @@
       pointer-events: none;
     }
 
-    /* Fixierte Mitte – bleibt beim Scrollen genau an Ort und Stelle */
+    /* Fixierte Mitte – füllt fast den ganzen Bildschirm und bleibt beim Scrollen stehen */
     .buehne {
       position: fixed;
       inset: 0;
@@ -49,7 +49,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 18px;
+      padding: clamp(8px, 2vh, 22px);
       pointer-events: none;
     }
 
@@ -58,20 +58,21 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      max-width: min(92vw, 430px);
-      max-height: 92vh;
+      max-width: min(95vw, 680px);
+      max-height: 94vh;
       pointer-events: auto;
     }
 
     .karte-bild {
       display: block;
       max-width: 100%;
-      max-height: 92vh;
+      max-height: 94vh;
       width: auto;
       height: auto;
-      filter:
-        drop-shadow(0 20px 34px rgba(20, 16, 12, 0.38))
-        drop-shadow(0 5px 10px rgba(20, 16, 12, 0.22));
+      border-radius: 14px;
+      box-shadow:
+        0 26px 54px rgba(18, 14, 10, 0.45),
+        0 8px 18px rgba(18, 14, 10, 0.26);
       user-select: none;
       -webkit-user-drag: none;
     }
@@ -80,13 +81,13 @@
     .mail-link {
       position: absolute;
       left: 51.5%;
-      bottom: 3.2%;
+      bottom: 4.8%;
       transform: translate(-50%, 0) rotate(-3.2deg);
-      padding: 2px 8px;
-      border-radius: 4px;
+      padding: 3px 10px;
+      border-radius: 5px;
       color: transparent;
       font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(10px, 1.3vw, 15px);
+      font-size: clamp(12px, 1.65vw, 22px);
       font-weight: 700;
       letter-spacing: 0.01em;
       text-decoration: none;
@@ -99,7 +100,7 @@
     .mail-link:focus-visible {
       background-color: var(--blattgruen);
       color: var(--blattgruen-text);
-      box-shadow: 0 3px 10px rgba(18, 44, 24, 0.4);
+      box-shadow: 0 3px 12px rgba(18, 44, 24, 0.42);
       outline: none;
     }
   </style>
