@@ -20,11 +20,13 @@
     html,
     body {
       width: 100%;
-      height: 100%;
+      min-height: 120vh;
       background-color: #b7aea0;
-      overflow: hidden;
+      overflow-x: hidden;
+      overflow-y: auto;
     }
 
+    /* Fixierter Resopal-Tisch im Hintergrund – bleibt beim Scrollen an Ort und Stelle */
     .tisch-hintergrund {
       position: fixed;
       inset: 0;
@@ -39,6 +41,7 @@
       pointer-events: none;
     }
 
+    /* Fixierte Kartenbühne – bleibt beim Scrollen genau da liegen */
     .buehne {
       position: fixed;
       inset: 0;
@@ -54,15 +57,14 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      /* Auf dem Handy richtig groß */
-      transform: scale(2.15);
+      transform: scale(2.35);
       transform-origin: center center;
       pointer-events: auto;
     }
 
     .karte-bild {
       display: block;
-      width: 94vw;
+      width: 92vw;
       max-width: none;
       height: auto;
       image-rendering: -webkit-optimize-contrast;
@@ -74,20 +76,19 @@
       -webkit-user-drag: none;
     }
 
-    /* Dezenter, edler Blattgrün-Hover ohne dicken Kasten */
+    /* Kompakter Link direkt auf servus@grosnsimma.de abgestimmt */
     .mail-link {
       position: absolute;
-      left: 51.4%;
-      bottom: 4.5%;
+      left: 51.3%;
+      bottom: 6.2%;
+      width: 15.5%;
+      height: 2.2%;
       transform: translate(-50%, 0) rotate(-3.2deg);
-      padding: 2px 6px;
       color: transparent;
-      font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(10px, 2.2vw, 18px);
-      font-weight: 700;
+      font-size: 0;
+      line-height: 0;
       text-decoration: none;
-      border-bottom: 2px solid transparent;
-      white-space: nowrap;
+      border-bottom: 1.5px solid transparent;
       cursor: pointer;
       transition: border-color 0.22s ease, filter 0.22s ease;
     }
@@ -95,23 +96,19 @@
     .mail-link:hover,
     .mail-link:focus-visible {
       border-bottom-color: var(--blattgruen);
-      filter: drop-shadow(0 0 6px var(--blattgruen-glow));
+      filter: drop-shadow(0 0 5px var(--blattgruen-glow));
       outline: none;
     }
 
     @media (min-width: 768px) {
       .karte-rahmen {
-        transform: scale(1.42);
+        transform: scale(1.18);
       }
 
       .karte-bild {
         width: auto;
-        height: 82vh;
+        height: 76vh;
         max-height: none;
-      }
-
-      .mail-link {
-        font-size: clamp(12px, 1.5vw, 20px);
       }
     }
   </style>
