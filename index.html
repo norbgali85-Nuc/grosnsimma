@@ -9,10 +9,6 @@
     :root {
       --blattgruen: #266a36;
       --blattgruen-text: #f3f8f4;
-      /* Feintuning der Klick-Fläche über servus@grosnsimma.de */
-      --mail-left: 52.8%;
-      --mail-bottom: 10.2%;
-      --mail-rotate: -5.5deg;
     }
 
     * {
@@ -29,23 +25,23 @@
       overflow-x: hidden;
     }
 
-    /* Fixierter Tisch im Hintergrund – bleibt beim Scrollen an Ort und Stelle */
-    .tisch-bg {
+    /* Fixierter bayerischer Wirtshaustisch im Hintergrund */
+    .tisch-hintergrund {
       position: fixed;
       inset: 0;
       z-index: 0;
       background-color: #b7aea0;
       background-image:
-        radial-gradient(circle at 78% 22%, rgba(255, 250, 238, 0.16) 0%, rgba(28, 22, 16, 0.26) 100%),
+        radial-gradient(circle at 78% 22%, rgba(255, 250, 238, 0.14) 0%, rgba(28, 22, 16, 0.24) 100%),
         url('tisch.jpg'),
-        url('tisch_2.jpg');
+        url('tisch_3.jpg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
       pointer-events: none;
     }
 
-    /* Fixierte Kartenbühne – bleibt beim Scrollen genau da liegen */
+    /* Fixierte Mitte – bleibt beim Scrollen genau an Ort und Stelle */
     .buehne {
       position: fixed;
       inset: 0;
@@ -57,41 +53,40 @@
       pointer-events: none;
     }
 
-    .karte-box {
+    .karte-rahmen {
       position: relative;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      max-width: min(94vw, 860px);
+      max-width: min(92vw, 430px);
       max-height: 92vh;
       pointer-events: auto;
     }
 
-    .karte-img {
+    .karte-bild {
       display: block;
       max-width: 100%;
       max-height: 92vh;
       width: auto;
       height: auto;
-      border-radius: 14px;
-      box-shadow:
-        0 24px 48px rgba(18, 14, 10, 0.45),
-        0 6px 14px rgba(18, 14, 10, 0.26);
+      filter:
+        drop-shadow(0 20px 34px rgba(20, 16, 12, 0.38))
+        drop-shadow(0 5px 10px rgba(20, 16, 12, 0.22));
       user-select: none;
       -webkit-user-drag: none;
     }
 
-    /* Klickbare E-Mail-Fläche mit blattgrünem Hover */
+    /* Klickbare Mail-Fläche über servus@grosnsimma.de unten auf der Karte */
     .mail-link {
       position: absolute;
-      left: var(--mail-left);
-      bottom: var(--mail-bottom);
-      transform: translate(-50%, 0) rotate(var(--mail-rotate));
+      left: 51.5%;
+      bottom: 3.2%;
+      transform: translate(-50%, 0) rotate(-3.2deg);
       padding: 2px 8px;
       border-radius: 4px;
       color: transparent;
       font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(10px, 1.3vw, 16px);
+      font-size: clamp(10px, 1.3vw, 15px);
       font-weight: 700;
       letter-spacing: 0.01em;
       text-decoration: none;
@@ -110,14 +105,14 @@
   </style>
 </head>
 <body>
-  <div class="tisch-bg" aria-hidden="true"></div>
+  <div class="tisch-hintergrund" aria-hidden="true"></div>
 
   <main class="buehne">
-    <div class="karte-box">
+    <div class="karte-rahmen">
       <img
-        src="karte-tisch.jpg"
+        src="karte.png"
         alt="GROSN SIMMA – 2x ziehen, bayrisch Blatt und Stoff, servus@grosnsimma.de"
-        class="karte-img"
+        class="karte-bild"
       />
       <a
         href="mailto:servus@grosnsimma.de"
