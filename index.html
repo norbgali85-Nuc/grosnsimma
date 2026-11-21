@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GROSN SIMMA – 2x ziehen | bayrisch Blatt und Stoff</title>
-  <meta name="description" content="GROSN SIMMA – 2x ziehen. bayrisch Blatt und Stoff. servus@grosnsimma.de" />
+  <meta name="description" content="GROSN SIMMA – 2x ziehen. bayrisch Blatt und Stoff. Kontakt: servus@grosnsimma.de" />
   <style>
     :root {
       --blattgruen: #266a36;
@@ -25,23 +25,23 @@
       overflow-x: hidden;
     }
 
-    /* Fixierter bayerischer Wirtshaustisch im Hintergrund */
+    /* Fixierter Resopal-Tisch im Hintergrund – bleibt beim Scrollen stehen */
     .tisch-hintergrund {
       position: fixed;
       inset: 0;
       z-index: 0;
       background-color: #b7aea0;
       background-image:
-        radial-gradient(circle at 78% 22%, rgba(255, 250, 238, 0.14) 0%, rgba(28, 22, 16, 0.24) 100%),
+        radial-gradient(circle at 78% 22%, rgba(255, 250, 238, 0.16) 0%, rgba(28, 22, 16, 0.25) 100%),
         url('tisch.jpg'),
-        url('tisch_3.jpg');
+        url('tisch_4.jpg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
       pointer-events: none;
     }
 
-    /* Fixierte Mitte – füllt fast den ganzen Bildschirm und bleibt beim Scrollen stehen */
+    /* Fixierte Bühne – Mobile First groß, bleibt beim Scrollen genau da liegen */
     .buehne {
       position: fixed;
       inset: 0;
@@ -49,7 +49,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: clamp(8px, 2vh, 22px);
+      padding: 6px;
       pointer-events: none;
     }
 
@@ -58,36 +58,40 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      max-width: min(95vw, 680px);
-      max-height: 94vh;
+      /* Mobile First: füllt den Handy-Bildschirm fast ganz aus */
+      width: 98vw;
+      max-height: 97dvh;
       pointer-events: auto;
     }
 
     .karte-bild {
       display: block;
+      width: 100%;
       max-width: 100%;
-      max-height: 94vh;
+      max-height: 97dvh;
       width: auto;
       height: auto;
-      border-radius: 14px;
-      box-shadow:
-        0 26px 54px rgba(18, 14, 10, 0.45),
-        0 8px 18px rgba(18, 14, 10, 0.26);
+      /* Blendet weiße Bildränder weich aus, damit nur die Karte auf dem Tisch liegt */
+      -webkit-mask-image: radial-gradient(ellipse 43% 47% at 50% 50%, #000 72%, rgba(0, 0, 0, 0.65) 86%, transparent 99%);
+      mask-image: radial-gradient(ellipse 43% 47% at 50% 50%, #000 72%, rgba(0, 0, 0, 0.65) 86%, transparent 99%);
+      filter:
+        drop-shadow(0 22px 42px rgba(18, 14, 10, 0.42))
+        drop-shadow(0 6px 14px rgba(18, 14, 10, 0.25));
       user-select: none;
       -webkit-user-drag: none;
     }
 
-    /* Klickbare Mail-Fläche über servus@grosnsimma.de unten auf der Karte */
+    /* Klickbarer Mail-Link direkt über servus@grosnsimma.de unten auf der Karte */
     .mail-link {
       position: absolute;
       left: 51.5%;
       bottom: 4.8%;
       transform: translate(-50%, 0) rotate(-3.2deg);
-      padding: 3px 10px;
+      padding: 4px 10px;
       border-radius: 5px;
       color: transparent;
       font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(12px, 1.65vw, 22px);
+      font-size: clamp(13px, 3.6vw, 22px);
       font-weight: 700;
       letter-spacing: 0.01em;
       text-decoration: none;
@@ -102,6 +106,27 @@
       color: var(--blattgruen-text);
       box-shadow: 0 3px 12px rgba(18, 44, 24, 0.42);
       outline: none;
+    }
+
+    /* Größere Bildschirme (Tablet & Desktop): ebenfalls groß und gut lesbar */
+    @media (min-width: 768px) {
+      .buehne {
+        padding: 16px;
+      }
+
+      .karte-rahmen {
+        width: auto;
+        max-width: min(92vw, 760px);
+        max-height: 95vh;
+      }
+
+      .karte-bild {
+        max-height: 95vh;
+      }
+
+      .mail-link {
+        font-size: clamp(13px, 1.7vw, 22px);
+      }
     }
   </style>
 </head>
