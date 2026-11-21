@@ -8,7 +8,6 @@
   <style>
     :root {
       --blattgruen: #266a36;
-      --blattgruen-hell: #2f8242;
       --blattgruen-text: #f4f9f5;
     }
 
@@ -26,7 +25,6 @@
       overflow-x: hidden;
     }
 
-    /* Fixierter Resopal-Tisch im Hintergrund – bleibt beim Scrollen stehen */
     .tisch-hintergrund {
       position: fixed;
       inset: 0;
@@ -34,15 +32,13 @@
       background-color: #b7aea0;
       background-image:
         radial-gradient(circle at 78% 22%, rgba(255, 250, 238, 0.14) 0%, rgba(28, 22, 16, 0.24) 100%),
-        url('tisch.jpg'),
-        url('tisch_4.jpg');
+        url('tisch.jpg');
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
       pointer-events: none;
     }
 
-    /* Fixierte Bühne – Mobile First groß, bleibt beim Scrollen genau da liegen */
     .buehne {
       position: fixed;
       inset: 0;
@@ -50,7 +46,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 6px;
+      padding: 8px;
       pointer-events: none;
     }
 
@@ -59,42 +55,37 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      width: 98vw;
-      max-height: 97dvh;
+      width: 90vw;
+      max-height: 90dvh;
       pointer-events: auto;
     }
 
     .karte-bild {
       display: block;
       width: 100%;
-      max-width: 100%;
-      max-height: 97dvh;
-      width: auto;
       height: auto;
-      /* Nachschärfen über SVG-Filter + Kontrast + Schatten auf dem Tisch */
+      max-height: 90dvh;
+      object-fit: contain;
       filter:
-        url(#nachschaerfen)
-        contrast(1.09)
+        contrast(1.08)
         saturate(1.06)
-        drop-shadow(0 22px 42px rgba(18, 14, 10, 0.44))
-        drop-shadow(0 6px 14px rgba(18, 14, 10, 0.26));
+        drop-shadow(0 20px 36px rgba(18, 14, 10, 0.42))
+        drop-shadow(0 5px 12px rgba(18, 14, 10, 0.24));
       user-select: none;
       -webkit-user-drag: none;
     }
 
-    /* Klickbarer Mail-Link direkt über servus@grosnsimma.de unten auf der Karte */
     .mail-link {
       position: absolute;
-      left: 51.4%;
+      left: 51.5%;
       bottom: 4.5%;
       transform: translate(-50%, 0) rotate(-3.2deg);
-      padding: 3px 9px;
+      padding: 4px 10px;
       border-radius: 5px;
       color: transparent;
       font-family: Georgia, "Times New Roman", serif;
-      font-size: clamp(12px, 3.5vw, 21px);
+      font-size: clamp(13px, 3.6vw, 21px);
       font-weight: 700;
-      letter-spacing: 0.01em;
       text-decoration: none;
       white-space: nowrap;
       cursor: pointer;
@@ -110,47 +101,29 @@
     }
 
     @media (min-width: 768px) {
-      .buehne {
-        padding: 16px;
-      }
-
       .karte-rahmen {
         width: auto;
-        max-width: min(92vw, 760px);
-        max-height: 95vh;
+        max-width: min(92vw, 720px);
+        max-height: 92vh;
       }
 
       .karte-bild {
-        max-height: 95vh;
+        max-height: 92vh;
       }
 
       .mail-link {
-        font-size: clamp(13px, 1.65vw, 21px);
+        font-size: clamp(13px, 1.6vw, 20px);
       }
     }
   </style>
 </head>
 <body>
-  <!-- Unsichtbares SVG mit Nachschärf-Matrix für das Kartenbild -->
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-    <defs>
-      <filter id="nachschaerfen" x="-5%" y="-5%" width="110%" height="110%">
-        <feConvolveMatrix
-          order="3"
-          kernelMatrix="0 -0.75 0 -0.75 4 -0.75 0 -0.75 0"
-          preserveAlpha="true"
-        />
-      </filter>
-    </defs>
-  </svg>
-
   <div class="tisch-hintergrund" aria-hidden="true"></div>
 
   <main class="buehne">
     <div class="karte-rahmen">
       <img
         src="karte.png"
-        onerror="if (!this.dataset.fb) { this.dataset.fb = '1'; this.src = 'karte_2.png'; }"
         alt="GROSN SIMMA – 2x ziehen, bayrisch Blatt und Stoff, servus@grosnsimma.de"
         class="karte-bild"
       />
