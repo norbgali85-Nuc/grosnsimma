@@ -20,13 +20,12 @@
     html,
     body {
       width: 100%;
-      min-height: 120vh;
+      height: 100%;
       background-color: #b7aea0;
-      overflow-x: hidden;
-      overflow-y: auto;
+      overflow: hidden;
     }
 
-    /* Fixierter Resopal-Tisch im Hintergrund – bleibt beim Scrollen an Ort und Stelle */
+    /* Fixierter Resopal-Tisch im Hintergrund */
     .tisch-hintergrund {
       position: fixed;
       inset: 0;
@@ -41,7 +40,7 @@
       pointer-events: none;
     }
 
-    /* Fixierte Kartenbühne – bleibt beim Scrollen genau da liegen */
+    /* Fixierte Kartenbühne */
     .buehne {
       position: fixed;
       inset: 0;
@@ -57,7 +56,7 @@
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      transform: scale(2.35);
+      transform: scale(2.55);
       transform-origin: center center;
       pointer-events: auto;
     }
@@ -76,12 +75,12 @@
       -webkit-user-drag: none;
     }
 
-    /* Kompakter Link direkt auf servus@grosnsimma.de abgestimmt */
+    /* Passgenaue Klick- und Hover-Fläche direkt auf servus@grosnsimma.de */
     .mail-link {
       position: absolute;
       left: 51.3%;
-      bottom: 6.2%;
-      width: 15.5%;
+      bottom: 4.5%;
+      width: 12.5%;
       height: 2.2%;
       transform: translate(-50%, 0) rotate(-3.2deg);
       color: transparent;
