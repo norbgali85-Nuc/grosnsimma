@@ -4,120 +4,562 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GROSN SIMMA – 2x ziehen | bayrisch Blatt und Stoff</title>
-  <meta name="description" content="GROSN SIMMA – 2x ziehen. bayrisch Blatt und Stoff. Anfrage: servus@grosnsimma.de" />
+  <meta name="description" content="GROSN SIMMA – 2x ziehen. bayrisch Blatt und Stoff. Siebdruck auf fairen Textilien und bayerischem Hanfpapier." />
   <style>
+    :root {
+      --blattgruen: #235c30;
+      --kuli-blau: #193b7a;
+      --creme: #f7f3e8;
+      --tinte: #1c1915;
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
 
-    html,
-    body {
+    html, body {
       width: 100%;
-      height: 100%;
+      min-height: 100%;
       background-color: #b7aea0;
-      overflow: hidden;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--tinte);
+      overflow-x: hidden;
     }
 
-    /* Fixierter Resopal-Tisch im Hintergrund */
-    .tisch-hintergrund {
-      position: fixed;
-      inset: 0;
-      z-index: 0;
+    /* Scrollbarer Resopal-Wirtshaustisch */
+    .tisch-szene {
+      position: relative;
+      width: 100%;
+      min-height: 175vh;
       background-color: #b7aea0;
       background-image:
-        radial-gradient(circle at 78% 22%, rgba(255, 250, 238, 0.14) 0%, rgba(28, 22, 16, 0.24) 100%),
+        radial-gradient(circle at 85% 18%, rgba(255, 248, 232, 0.16) 0%, rgba(25, 20, 14, 0.25) 100%),
         url('tisch.jpg');
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      pointer-events: none;
+      background-size: 100% auto;
+      background-repeat: repeat-y;
+      background-position: top center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
-    /* Fixierte Kartenbühne */
-    .buehne {
+    /* Fixierte GROSN SIMMA Karte – bleibt beim Scrollen an ihrem Platz liegen */
+    .karte-fixiert {
       position: fixed;
-      inset: 0;
-      z-index: 2;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      pointer-events: none;
+      top: max(18px, 3.5vh);
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 20;
+      width: min(74vw, 310px);
+      pointer-events: auto;
     }
 
     .karte-link {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      transform: scale(2.55);
-      transform-origin: center center;
-      text-decoration: none;
-      cursor: pointer;
-      pointer-events: auto;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .karte-link:focus-visible {
-      outline: 2px solid rgba(43, 122, 61, 0.7);
-      outline-offset: 4px;
-      border-radius: 6px;
-    }
-
-    .karte-bild {
       display: block;
-      width: 92vw;
-      max-width: none;
+      position: relative;
+      text-decoration: none;
+      transition: transform 0.22s ease;
+    }
+
+    .karte-link:hover,
+    .karte-link:focus-visible {
+      transform: translateY(-2px) scale(1.012);
+      outline: none;
+    }
+
+    .karte-link img {
+      display: block;
+      width: 100%;
       height: auto;
-      image-rendering: -webkit-optimize-contrast;
+      border-radius: 14px;
+      /* blendet einen eventuellen weißen JPG-Rest sauber aus */
+      mix-blend-mode: multiply;
       filter:
-        url(#fein-scharf)
-        contrast(1.07)
-        drop-shadow(0 16px 28px rgba(18, 14, 10, 0.4));
+        drop-shadow(0 12px 22px rgba(20, 16, 12, 0.36))
+        drop-shadow(0 3px 6px rgba(20, 16, 12, 0.22));
       user-select: none;
       -webkit-user-drag: none;
     }
 
-    @media (min-width: 768px) {
-      .karte-link {
-        transform: scale(1.18);
-      }
+    /* Scrollbare Objekte auf dem Tisch – starten unterhalb der fixierten Karte */
+    .tisch-objekte {
+      position: relative;
+      z-index: 10;
+      width: 100%;
+      max-width: 480px;
+      padding-top: min(114vw, 480px);
+      padding-bottom: 245px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 44px;
+    }
 
-      .karte-bild {
-        width: auto;
-        height: 76vh;
-        max-height: none;
+    .objekt-trigger {
+      position: relative;
+      background: none;
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.22s ease;
+    }
+
+    .objekt-trigger:hover,
+    .objekt-trigger:focus-visible {
+      transform: scale(1.025);
+      outline: none;
+    }
+
+    .objekt-trigger img {
+      display: block;
+      width: 100%;
+      height: auto;
+      filter:
+        drop-shadow(0 14px 20px rgba(20, 16, 12, 0.38))
+        drop-shadow(0 3px 6px rgba(20, 16, 12, 0.24));
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    /* Schafkopf-Kartenstapel = Blatt */
+    .objekt-blatt {
+      width: min(74vw, 310px);
+      transform: rotate(-3deg);
+    }
+
+    .objekt-blatt:hover,
+    .objekt-blatt:focus-visible {
+      transform: rotate(-2deg) scale(1.025);
+    }
+
+    /* Selbstgedrehte = Stoff */
+    .objekt-stoff {
+      width: min(56vw, 235px);
+      align-self: flex-end;
+      margin-right: 8vw;
+      transform: rotate(-14deg);
+    }
+
+    .objekt-stoff:hover,
+    .objekt-stoff:focus-visible {
+      transform: rotate(-12deg) scale(1.03);
+    }
+
+    /* Hover-Labels: unsichtbar im Normalzustand, erscheinen nur beim Hover/Focus */
+    .hover-label {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -42%);
+      background: rgba(247, 243, 232, 0.94);
+      color: var(--tinte);
+      border: 1.5px solid var(--tinte);
+      padding: 6px 16px;
+      border-radius: 999px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.28);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.18s ease, transform 0.18s ease;
+      white-space: nowrap;
+      z-index: 5;
+    }
+
+    .objekt-trigger:hover .hover-label,
+    .objekt-trigger:focus-visible .hover-label {
+      opacity: 1;
+      transform: translate(-50%, -50%);
+    }
+
+    /* Bierdeckel-Ausschnitt ganz unten am Tischrand */
+    .bierdeckel-fuss {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: min(88vw, 380px);
+      height: 175px;
+      overflow: hidden;
+      z-index: 15;
+      display: flex;
+      justify-content: center;
+    }
+
+    .bierdeckel-scheibe {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      background-color: #dfd4bc;
+      background-image: url('bierdeckel.png');
+      background-size: cover;
+      background-position: center top;
+      box-shadow:
+        0 -6px 18px rgba(20, 16, 12, 0.32),
+        inset 0 2px 6px rgba(255, 255, 255, 0.45);
+      border: 1px solid rgba(90, 75, 55, 0.35);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 52px;
+      text-align: center;
+    }
+
+    /* Satire-Aufdruck auf dem Bierdeckel (wird von bierdeckel.png überlagert, sobald vorhanden) */
+    .bierdeckel-satire {
+      font-weight: 700;
+      font-size: clamp(13px, 3.6vw, 17px);
+      line-height: 1.25;
+      color: rgba(65, 42, 22, 0.72);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      max-width: 72%;
+      pointer-events: none;
+      user-select: none;
+    }
+
+    /* Klickbare Kugelschreiber-Links auf dem Bierdeckelrand */
+    .kuli-link {
+      position: absolute;
+      top: 16px;
+      background: none;
+      border: none;
+      font-family: "Bradley Hand", "Segoe Print", "Comic Sans MS", cursive;
+      font-size: clamp(13px, 3.6vw, 16px);
+      font-weight: 700;
+      color: var(--kuli-blau);
+      cursor: pointer;
+      padding: 4px 8px;
+      opacity: 0.92;
+      transition: opacity 0.15s ease;
+      z-index: 3;
+    }
+
+    .kuli-link:hover,
+    .kuli-link:focus-visible {
+      opacity: 1;
+      text-decoration: underline;
+      outline: none;
+    }
+
+    .kuli-impressum {
+      left: 17%;
+      transform: rotate(-16deg);
+    }
+
+    .kuli-datenschutz {
+      right: 15%;
+      transform: rotate(15deg);
+    }
+
+    /* Modals für Blatt, Stoff, Impressum & Datenschutz */
+    dialog.tisch-modal {
+      margin: auto;
+      width: min(92vw, 480px);
+      max-height: 86vh;
+      border: 2px solid var(--tinte);
+      border-radius: 14px;
+      background-color: var(--creme);
+      color: var(--tinte);
+      padding: 24px 22px;
+      box-shadow: 0 24px 48px rgba(0, 0, 0, 0.45);
+      overflow-y: auto;
+    }
+
+    dialog.tisch-modal::backdrop {
+      background: rgba(18, 15, 11, 0.62);
+      backdrop-filter: blur(2px);
+    }
+
+    .modal-kopf {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      border-bottom: 1px solid rgba(28, 25, 21, 0.2);
+      padding-bottom: 12px;
+      margin-bottom: 16px;
+    }
+
+    .modal-kopf h2 {
+      font-size: 1.35rem;
+      line-height: 1.2;
+    }
+
+    .modal-sub {
+      font-size: 0.9rem;
+      font-style: italic;
+      opacity: 0.78;
+      margin-top: 3px;
+    }
+
+    .modal-schliessen {
+      background: none;
+      border: 1.5px solid var(--tinte);
+      border-radius: 8px;
+      padding: 4px 10px;
+      font-family: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .produkt-liste {
+      display: grid;
+      gap: 14px;
+      margin-bottom: 18px;
+    }
+
+    .produkt-karte {
+      border: 1px solid rgba(28, 25, 21, 0.22);
+      border-radius: 10px;
+      padding: 12px 14px;
+      background: rgba(255, 255, 255, 0.55);
+    }
+
+    .produkt-karte h3 {
+      font-size: 1.05rem;
+      margin-bottom: 4px;
+    }
+
+    .produkt-karte p {
+      font-size: 0.92rem;
+      line-height: 1.45;
+    }
+
+    .anfrage-btn {
+      display: inline-block;
+      margin-top: 10px;
+      background: var(--blattgruen);
+      color: #fff;
+      text-decoration: none;
+      padding: 7px 14px;
+      border-radius: 7px;
+      font-size: 0.88rem;
+      font-weight: 700;
+    }
+
+    .recht-text p {
+      font-size: 0.92rem;
+      line-height: 1.55;
+      margin-bottom: 12px;
+    }
+
+    @media (min-width: 768px) {
+      .tisch-szene {
+        background-size: cover;
+        min-height: 165vh;
+      }
+      .objekt-stoff {
+        margin-right: 20px;
       }
     }
   </style>
 </head>
 <body>
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-    <defs>
-      <filter id="fein-scharf" x="-4%" y="-4%" width="108%" height="108%">
-        <feConvolveMatrix
-          order="3"
-          kernelMatrix="0 -0.45 0 -0.45 2.8 -0.45 0 -0.45 0"
-          preserveAlpha="true"
+
+  <main class="tisch-szene">
+
+    <!-- 1. Fixierte GROSN SIMMA Karte -> öffnet Mail mit Betreff "du bist dran" -->
+    <div class="karte-fixiert">
+      <a
+        href="mailto:servus@grosnsimma.de?subject=du%20bist%20dran"
+        class="karte-link"
+        title="Anfrage per E-Mail senden (Betreff: du bist dran)"
+        aria-label="GROSN SIMMA Karte – Klick öffnet E-Mail mit Betreff du bist dran"
+      >
+        <img
+          src="karte.png"
+          onerror="if(!this.dataset.tried){this.dataset.tried=1;this.src='karte.jpg';}"
+          alt="GROSN SIMMA – 2x ziehen, bayrisch Blatt und Stoff"
         />
-      </filter>
-    </defs>
-  </svg>
+      </a>
+    </div>
 
-  <div class="tisch-hintergrund" aria-hidden="true"></div>
+    <!-- 2. Scrollbare Objekte auf der Resopal-Platte -->
+    <div class="tisch-objekte">
 
-  <main class="buehne">
-    <a
-      href="mailto:servus@grosnsimma.de?subject=Anfrage%20GROSN%20SIMMA"
-      class="karte-link"
-      aria-label="Anfrage an servus@grosnsimma.de senden"
-    >
-      <img
-        src="karte.png"
-        alt="GROSN SIMMA – 2x ziehen, bayrisch Blatt und Stoff, servus@grosnsimma.de"
-        class="karte-bild"
-      />
-    </a>
+      <!-- Kartenstapel = Blatt (Hanfpapier-Prints) -->
+      <button
+        type="button"
+        class="objekt-trigger objekt-blatt"
+        data-modal="modal-blatt"
+        aria-label="Blatt – Prints auf bayerischem Hanfpapier öffnen"
+      >
+        <img
+          src="stapel.png"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
+          alt="Umgedrehter bayerischer Schafkopf-Kartenstapel"
+        />
+        <!-- Automatischer Fallback, solange stapel.png noch nicht im Ordner liegt -->
+        <div style="display:none; width:100%; aspect-ratio:1.52/1; border-radius:14px; background:#f2efe6; padding:10px; box-shadow: 0 4px 0 #d8d3c8, 0 8px 0 #c6c0b4, 0 12px 0 #b3ad9f, 0 18px 24px rgba(0,0,0,0.38);">
+          <div style="width:100%; height:100%; border-radius:8px; border:2px solid #2b2b2b; background-color:#dcdad3; background-image: repeating-linear-gradient(45deg, rgba(25,25,25,0.85) 0 2px, transparent 2px 6px, rgba(25,25,25,0.85) 6px 8px, transparent 8px 22px), repeating-linear-gradient(-45deg, rgba(25,25,25,0.85) 0 2px, transparent 2px 6px, rgba(25,25,25,0.85) 6px 8px, transparent 8px 22px);"></div>
+        </div>
+        <span class="hover-label">Blatt</span>
+      </button>
+
+      <!-- Selbstgedrehte = Stoff (Siebdruck-Textilien) -->
+      <button
+        type="button"
+        class="objekt-trigger objekt-stoff"
+        data-modal="modal-stoff"
+        aria-label="Stoff – Siebdruck auf fairen Textilien öffnen"
+      >
+        <img
+          src="joint.png"
+          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+          alt="Selbstgedrehte auf dem Wirtshaustisch"
+        />
+        <!-- Automatischer Fallback, solange joint.png noch nicht im Ordner liegt -->
+        <div style="display:none; width:100%; height:26px; align-items:center; filter:drop-shadow(0 10px 12px rgba(0,0,0,0.42));">
+          <div style="width:24%; height:13px; background:linear-gradient(#e7dcc6,#cbbba0); border-radius:2px 0 0 2px;"></div>
+          <div style="width:68%; height:18px; background:linear-gradient(#f5f1e6,#dfd8c6); clip-path:polygon(0 14%, 100% 0, 100% 100%, 0 86%);"></div>
+          <div style="width:8%; height:9px; background:#d5cbb6; clip-path:polygon(0 10%, 100% 35%, 100% 65%, 0 90%);"></div>
+        </div>
+        <span class="hover-label">Stoff</span>
+      </button>
+
+    </div>
+
+    <!-- 3. Bierdeckel-Ausschnitt ganz unten mit Kugelschreiber-Links -->
+    <footer class="bierdeckel-fuss">
+      <div class="bierdeckel-scheibe">
+        <button
+          type="button"
+          class="kuli-link kuli-impressum"
+          data-modal="modal-impressum"
+        >Impressum</button>
+        <button
+          type="button"
+          class="kuli-link kuli-datenschutz"
+          data-modal="modal-datenschutz"
+        >Datenschutz</button>
+        <div class="bierdeckel-satire">
+          Bräukeller Bier Bräu<br />
+          Brauerei Bier Bier Bier<br />
+          <span style="font-size:0.78em; font-weight:400;">Zum Bräukeller 23</span>
+        </div>
+      </div>
+    </footer>
+
   </main>
+
+  <!-- Modal: Blatt (Hanfpapier-Prints) -->
+  <dialog id="modal-blatt" class="tisch-modal">
+    <div class="modal-kopf">
+      <div>
+        <h2>Blatt – Hanfpapier-Prints</h2>
+        <div class="modal-sub">Handgedruckter Siebdruck auf bayerischem Hanfpapier</div>
+      </div>
+      <button type="button" class="modal-schliessen" data-close>✕</button>
+    </div>
+    <div class="produkt-liste">
+      <article class="produkt-karte">
+        <h3>GROSN SIMMA – 7er Blatt (A3 / A4)</h3>
+        <p>Mehr-Farb-Siebdruck auf schwerem, ungestrichenem bayerischem Hanfpapier. Limitierte Auflage, handsigniert.</p>
+        <a class="anfrage-btn" href="mailto:servus@grosnsimma.de?subject=du%20bist%20dran%20-%20Blatt%20Print">Anfragen</a>
+      </article>
+      <article class="produkt-karte">
+        <h3>Wunschmotiv / Sonderdruck auf Blatt</h3>
+        <p>Eigene Auflage für Stammtisch, Band oder Veranstaltung auf Hanfpapier gedruckt.</p>
+        <a class="anfrage-btn" href="mailto:servus@grosnsimma.de?subject=du%20bist%20dran%20-%20Sonderdruck%20Blatt">Anfragen</a>
+      </article>
+    </div>
+  </dialog>
+
+  <!-- Modal: Stoff (T-Shirts & Textilien) -->
+  <dialog id="modal-stoff" class="tisch-modal">
+    <div class="modal-kopf">
+      <div>
+        <h2>Stoff – Faire Textilien</h2>
+        <div class="modal-sub">Handgemachter Siebdruck auf Bio-Baumwolle & Hanf-Mix</div>
+      </div>
+      <button type="button" class="modal-schliessen" data-close>✕</button>
+    </div>
+    <div class="produkt-liste">
+      <article class="produkt-karte">
+        <h3>Shirt „GROSN SIMMA – 2x ziehen“</h3>
+        <p>Schweres Fair-Wear T-Shirt (Natur / Off-White), von Hand im Siebdruck veredelt.</p>
+        <a class="anfrage-btn" href="mailto:servus@grosnsimma.de?subject=du%20bist%20dran%20-%20Stoff%20Shirt">Anfragen</a>
+      </article>
+      <article class="produkt-karte">
+        <h3>Individueller Textil-Siebdruck</h3>
+        <p>Kleine Serien auf fairen Shirts, Hoodies oder Beuteln – direkt aus der Werkstatt.</p>
+        <a class="anfrage-btn" href="mailto:servus@grosnsimma.de?subject=du%20bist%20dran%20-%20Sonderdruck%20Stoff">Anfragen</a>
+      </article>
+    </div>
+  </dialog>
+
+  <!-- Modal: Impressum -->
+  <dialog id="modal-impressum" class="tisch-modal">
+    <div class="modal-kopf">
+      <div>
+        <h2>Impressum</h2>
+        <div class="modal-sub">Angaben gemäß § 5 DDG</div>
+      </div>
+      <button type="button" class="modal-schliessen" data-close>✕</button>
+    </div>
+    <div class="recht-text">
+      <p>
+        <strong>GROSN SIMMA – bayrisch Blatt und Stoff</strong><br />
+        Norbert Galiger<br />
+        Zum Bräukeller 23<br />
+        94496 Ortenburg
+      </p>
+      <p>
+        <strong>Kontakt:</strong><br />
+        E-Mail: <a href="mailto:servus@grosnsimma.de?subject=du%20bist%20dran">servus@grosnsimma.de</a>
+      </p>
+    </div>
+  </dialog>
+
+  <!-- Modal: Datenschutz -->
+  <dialog id="modal-datenschutz" class="tisch-modal">
+    <div class="modal-kopf">
+      <div>
+        <h2>Datenschutz</h2>
+        <div class="modal-sub">Kurz & ehrlich</div>
+      </div>
+      <button type="button" class="modal-schliessen" data-close>✕</button>
+    </div>
+    <div class="recht-text">
+      <p>
+        <strong>1. Verantwortlicher</strong><br />
+        Norbert Galiger, Zum Bräukeller 23, 94496 Ortenburg, E-Mail: servus@grosnsimma.de.
+      </p>
+      <p>
+        <strong>2. Keine Cookies & kein Tracking</strong><br />
+        Diese Seite setzt keine Marketing-Cookies, keine Analyse-Tracker und lädt keine externen Schriftarten von Drittservern.
+      </p>
+      <p>
+        <strong>3. Kontaktaufnahme per E-Mail</strong><br />
+        Wenn du auf die Karte oder einen Anfrage-Button klickst, öffnet sich dein eigenes E-Mail-Programm. Deine Angaben werden ausschließlich zur Bearbeitung deiner Anfrage verwendet.
+      </p>
+    </div>
+  </dialog>
+
+  <script>
+    // Modals öffnen
+    document.querySelectorAll('[data-modal]').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        const dialog = document.getElementById(btn.getAttribute('data-modal'));
+        if (dialog) dialog.showModal();
+      });
+    });
+
+    // Modals schließen (Button oder Klick auf Hintergrund)
+    document.querySelectorAll('dialog.tisch-modal').forEach((dialog) => {
+      dialog.querySelector('[data-close]')?.addEventListener('click', () => dialog.close());
+      dialog.addEventListener('click', (e) => {
+        if (e.target === dialog) dialog.close();
+      });
+    });
+  </script>
 </body>
 </html>
