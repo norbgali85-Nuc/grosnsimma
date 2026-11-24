@@ -44,16 +44,17 @@
     .tisch-spalte {
       width: 100%;
       max-width: 560px;
-      padding: 18px 12px 0;
+      padding: 20px 14px 0;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 24px;
+      gap: 28px;
     }
 
-    /* 1. GROSN SIMMA Karte & 2. Kartenstapel: gleiche Größe */
-    .karte-block {
-      width: min(88vw, 370px);
+    /* 1. GROSN SIMMA Karte & 2. Kartenstapel: gleiches Format & gleiche Größe */
+    .karte-block,
+    .stapel-objekt {
+      width: min(86vw, 370px);
     }
 
     .karte-mail-link {
@@ -124,7 +125,6 @@
     }
 
     .stapel-objekt {
-      width: min(74vw, 310px);
       transform: rotate(-1.5deg);
     }
 
@@ -133,16 +133,16 @@
       transform: rotate(-0.5deg) scale(1.015);
     }
 
-    /* 3. Joint: hochkantiger & etwa auf Kartenlänge */
+    /* 3. Joint: senkrecht, leicht schräg verschoben, etwa so groß/lang wie die Karten */
     .joint-objekt {
       width: auto;
-      height: clamp(250px, 56vw, 320px);
-      transform: rotate(-28deg);
+      height: clamp(290px, 68vw, 370px);
+      transform: translateX(18px) rotate(-48deg);
     }
 
     .joint-objekt:hover,
     .joint-objekt:focus-visible {
-      transform: rotate(-25deg) scale(1.025);
+      transform: translateX(18px) rotate(-45deg) scale(1.025);
     }
 
     .joint-objekt img {
@@ -150,13 +150,13 @@
       height: 100%;
     }
 
-    /* 4. Bierdeckel: in Relation zu Karte/Stapel/Joint angepasst, nah am Joint */
+    /* 4. Bierdeckel: realistische Größe zu den Karten, straffer Abstand */
     .bierdeckel-abschluss {
       position: relative;
-      width: min(78vw, 340px);
-      height: calc(min(78vw, 340px) * 0.46);
+      width: min(84vw, 390px);
+      height: calc(min(84vw, 390px) * 0.46);
       overflow: hidden;
-      margin-top: 8px;
+      margin-top: 10px;
       flex-shrink: 0;
     }
 
@@ -168,7 +168,7 @@
       -webkit-user-drag: none;
     }
 
-    /* Klickflächen passgenau über Kugelschreiber-Impressum & Kugelschreiber-Datenschutz */
+    /* Klickflächen passgenau über Impressum und Datenschutz */
     .kuli-hotspot {
       position: absolute;
       top: 14%;
@@ -322,20 +322,18 @@
     @media (min-width: 768px) {
       .tisch-spalte {
         padding-top: 32px;
-        gap: 32px;
+        gap: 36px;
       }
-      .karte-block {
-        width: 410px;
-      }
+      .karte-block,
       .stapel-objekt {
-        width: 340px;
+        width: 380px;
       }
       .joint-objekt {
-        height: 310px;
+        height: 365px;
       }
       .bierdeckel-abschluss {
-        width: 350px;
-        height: 162px;
+        width: 400px;
+        height: 184px;
       }
     }
   </style>
