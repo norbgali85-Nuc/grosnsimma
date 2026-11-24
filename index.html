@@ -38,13 +38,14 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      overflow-x: hidden;
     }
 
     /* Startansicht: beim Betreten nur die GROSN SIMMA Karte sichtbar */
     .karte-start-bereich {
       width: 100%;
       min-height: 100dvh;
-      padding: 72px 16px 88px;
+      padding: 80px 16px 112px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -87,11 +88,11 @@
         drop-shadow(0 12px 18px rgba(20, 16, 12, 0.35));
     }
 
-    /* Scrollbarer Bereich ab dem Kartenstapel */
+    /* Scrollbarer Bereich ab dem Kartenstapel mit einheitlichen Abständen */
     .tisch-spalte {
       width: 100%;
       max-width: 580px;
-      padding: 48px 14px 0;
+      padding: 0 14px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -145,12 +146,11 @@
       transform: rotate(-0.5deg) scale(1.015);
     }
 
-    /* 3. Joint: deutlich länger gezogen, schlank ohne Verbreiterung, mit extra Abstand */
+    /* 3. Joint: endgültige Länge, deutlich schmalerer Tip/Filter */
     .joint-objekt {
       width: auto;
       height: clamp(260px, 58vw, 340px);
       transform: translateX(14px) rotate(-36deg);
-      margin-block: 42px;
     }
 
     .joint-objekt:hover,
@@ -163,17 +163,25 @@
       height: 100%;
       transform: scaleY(1.42);
       transform-origin: center center;
+      clip-path: polygon(
+        52% 0%,
+        76% 4%,
+        66% 68%,
+        36% 100%,
+        16% 96%,
+        36% 64%
+      );
     }
 
-    /* 4. Bierdeckel: mobil über die ganze Breite, großer Abstand nach dem Joint */
+    /* 4. Bierdeckel: mobil links und rechts über die Seite hinaus, gleicher Abstand davor */
     .bierdeckel-abschluss {
       position: relative;
-      width: 100vw;
-      height: calc(100vw * 0.46);
-      max-width: 520px;
-      max-height: 239px;
+      width: 118vw;
+      height: calc(118vw * 0.46);
+      max-width: 620px;
+      max-height: 285px;
       overflow: hidden;
-      margin-top: 124px;
+      margin-top: 112px;
       flex-shrink: 0;
     }
 
@@ -339,10 +347,10 @@
 
     @media (min-width: 768px) {
       .karte-start-bereich {
-        padding: 88px 24px 104px;
+        padding: 96px 24px 128px;
       }
       .tisch-spalte {
-        padding-top: 64px;
+        padding-top: 0;
         gap: 128px;
       }
       .karte-block {
@@ -353,12 +361,11 @@
       }
       .joint-objekt {
         height: 325px;
-        margin-block: 48px;
       }
       .bierdeckel-abschluss {
-        width: 460px;
-        height: 212px;
-        margin-top: 136px;
+        width: 520px;
+        height: 239px;
+        margin-top: 128px;
       }
     }
   </style>
