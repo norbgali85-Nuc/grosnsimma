@@ -7,7 +7,7 @@
   <style>
     :root {
       --grasgruen: #3b7a47;
-      --grasgruen-sanft: rgba(59, 122, 71, 0.25);
+      --grasgruen-sanft: rgba(59, 122, 71, 0.24);
       --papier: #f5f0e4;
       --dunkel: #1b1815;
     }
@@ -27,16 +27,14 @@
       overflow-x: hidden;
     }
 
-    /* Scrollbarer Wirtshaustisch (nur Resopal-Oberfläche) */
     .tisch-flaeche {
       position: relative;
       width: 100%;
-      min-height: 185vh;
+      min-height: 170vh;
       background-color: #b7aea0;
       background-image: url('tisch.jpg');
-      background-size: 100% auto;
-      background-repeat: repeat-y;
-      background-position: top center;
+      background-size: cover;
+      background-position: center top;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -44,32 +42,30 @@
 
     .tisch-spalte {
       width: 100%;
-      max-width: 680px;
-      padding: 48px 20px 0;
+      max-width: 540px;
+      padding: 44px 20px 0;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 64px;
+      gap: 56px;
       flex: 1 0 auto;
     }
 
-    /* 1. GROSN SIMMA Karte -> deckend, größer auf Desktop, E-Mail-Kontakt */
+    /* 1. GROSN SIMMA Karte -> E-Mail-Kontakt */
     .karte-block {
-      width: min(115vw, 540px);
-      display: flex;
-      justify-content: center;
+      width: min(76vw, 310px);
     }
 
     .karte-mail-link {
       display: block;
       width: 100%;
       text-decoration: none;
-      transition: transform 0.22s ease;
+      transition: transform 0.2s ease;
     }
 
     .karte-mail-link:hover,
     .karte-mail-link:focus-visible {
-      transform: translateY(-3px) scale(1.015);
+      transform: translateY(-2px) scale(1.015);
       text-decoration: none;
       outline: none;
     }
@@ -78,8 +74,8 @@
       display: block;
       width: 100%;
       height: auto;
-      filter: drop-shadow(0 14px 22px rgba(20, 16, 12, 0.36));
-      transition: filter 0.22s ease;
+      filter: drop-shadow(0 12px 18px rgba(20, 16, 12, 0.35));
+      transition: filter 0.2s ease;
       user-select: none;
       -webkit-user-drag: none;
     }
@@ -87,8 +83,8 @@
     .karte-mail-link:hover img,
     .karte-mail-link:focus-visible img {
       filter:
-        drop-shadow(0 0 10px rgba(59, 122, 71, 0.55))
-        drop-shadow(0 14px 22px rgba(20, 16, 12, 0.36));
+        drop-shadow(0 0 8px rgba(59, 122, 71, 0.55))
+        drop-shadow(0 12px 18px rgba(20, 16, 12, 0.35));
     }
 
     /* Klickbare Tisch-Objekte (Blatt & Stoff) */
@@ -102,7 +98,7 @@
       display: inline-flex;
       flex-direction: column;
       align-items: center;
-      transition: transform 0.22s ease;
+      transition: transform 0.2s ease;
     }
 
     .objekt-knopf:hover,
@@ -116,8 +112,8 @@
       display: block;
       width: 100%;
       height: auto;
-      filter: drop-shadow(0 14px 20px rgba(20, 16, 12, 0.35));
-      transition: filter 0.22s ease;
+      filter: drop-shadow(0 12px 18px rgba(20, 16, 12, 0.34));
+      transition: filter 0.2s ease;
       user-select: none;
       -webkit-user-drag: none;
     }
@@ -125,40 +121,30 @@
     .objekt-knopf:hover img,
     .objekt-knopf:focus-visible img {
       filter:
-        drop-shadow(0 0 10px rgba(59, 122, 71, 0.6))
-        drop-shadow(0 14px 20px rgba(20, 16, 12, 0.35));
+        drop-shadow(0 0 8px rgba(59, 122, 71, 0.58))
+        drop-shadow(0 12px 18px rgba(20, 16, 12, 0.34));
     }
 
     /* 2. Kartenstapel -> Unterseite Blatt */
     .stapel-objekt {
-      width: min(76vw, 370px);
+      width: min(74vw, 300px);
       transform: rotate(-2deg);
-    }
-
-    .stapel-objekt:hover,
-    .stapel-objekt:focus-visible {
-      transform: rotate(-1deg) scale(1.025);
     }
 
     /* 3. Joint -> Unterseite Stoff */
     .joint-objekt {
-      width: min(68vw, 340px);
-      transform: rotate(-8deg);
+      width: min(64vw, 260px);
+      transform: rotate(-10deg);
     }
 
-    .joint-objekt:hover,
-    .joint-objekt:focus-visible {
-      transform: rotate(-6deg) scale(1.03);
-    }
-
-    /* Ruhiges Grasgrün-Label nur beim Hover/Focus, nie unterstrichen */
+    /* Ruhiges Grasgrün beim Hover, nie unterstrichen */
     .hover-tag {
-      margin-top: 6px;
-      padding: 5px 14px;
+      margin-top: 8px;
+      padding: 4px 12px;
       border-radius: 999px;
       background-color: var(--grasgruen);
       color: #f4f9f5;
-      font-size: 0.96rem;
+      font-size: 0.92rem;
       font-weight: 700;
       letter-spacing: 0.03em;
       text-decoration: none;
@@ -176,13 +162,13 @@
       text-decoration: none;
     }
 
-    /* 4. Bierdeckel unten zu 1/3 sichtbar, ohne doppelte Schrift */
+    /* 4. Bierdeckel unten zu 1/3 sichtbar, dann Seitenende */
     .bierdeckel-abschluss {
       position: relative;
-      width: min(90vw, 440px);
-      height: calc(min(90vw, 440px) / 3);
+      width: min(88vw, 380px);
+      height: calc(min(88vw, 380px) / 3);
       overflow: hidden;
-      margin-top: 72px;
+      margin-top: 64px;
       flex-shrink: 0;
     }
 
@@ -190,53 +176,50 @@
       display: block;
       width: 100%;
       height: auto;
-      filter: drop-shadow(0 -6px 16px rgba(20, 16, 12, 0.28));
       user-select: none;
       -webkit-user-drag: none;
     }
 
-    /* Unsichtbare Klickzonen exakt über dem Kugelschreiber-Text auf bierdeckel.png */
     .kuli-hotspot {
       position: absolute;
-      top: 10%;
+      top: 8%;
       width: 34%;
-      height: 46%;
+      height: 48%;
       background: transparent;
       border: none;
       border-radius: 999px;
       cursor: pointer;
       text-decoration: none;
-      transition: background-color 0.2s ease, box-shadow 0.2s ease;
+      transition: background-color 0.2s ease;
     }
 
     .kuli-hotspot:hover,
     .kuli-hotspot:focus-visible {
       background-color: var(--grasgruen-sanft);
-      box-shadow: 0 0 12px var(--grasgruen-sanft);
       text-decoration: none;
       outline: none;
     }
 
     .hotspot-impressum {
       left: 14%;
-      transform: rotate(-18deg);
+      transform: rotate(-16deg);
     }
 
     .hotspot-datenschutz {
       right: 13%;
-      transform: rotate(18deg);
+      transform: rotate(16deg);
     }
 
-    /* Unterseiten / Ansichten (Blatt, Stoff, Impressum, Datenschutz) */
+    /* Dialoge für Blatt, Stoff, Impressum & Datenschutz */
     dialog.seite-dialog {
       margin: auto;
-      width: min(92vw, 500px);
+      width: min(92vw, 480px);
       max-height: 85vh;
       border: 2px solid var(--dunkel);
       border-radius: 14px;
       background-color: var(--papier);
       color: var(--dunkel);
-      padding: 24px 22px;
+      padding: 22px 20px;
       box-shadow: 0 22px 44px rgba(0, 0, 0, 0.42);
       overflow-y: auto;
     }
@@ -256,12 +239,12 @@
     }
 
     .dialog-kopf h2 {
-      font-size: 1.35rem;
+      font-size: 1.3rem;
       line-height: 1.2;
     }
 
     .dialog-untertitel {
-      font-size: 0.94rem;
+      font-size: 0.92rem;
       margin-top: 4px;
       opacity: 0.82;
     }
@@ -296,18 +279,18 @@
     .inhalt-karte {
       border: 1px solid rgba(27, 24, 21, 0.2);
       border-radius: 10px;
-      padding: 14px 16px;
+      padding: 12px 14px;
       background: rgba(255, 255, 255, 0.55);
     }
 
     .inhalt-karte h3 {
-      font-size: 1.06rem;
+      font-size: 1.04rem;
       margin-bottom: 4px;
     }
 
     .inhalt-karte p,
     .dialog-text p {
-      font-size: 0.94rem;
+      font-size: 0.92rem;
       line-height: 1.5;
       margin-bottom: 10px;
     }
@@ -319,7 +302,7 @@
       border-radius: 7px;
       background-color: var(--dunkel);
       color: #fff;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       font-weight: 700;
       text-decoration: none;
       transition: background-color 0.18s ease;
@@ -347,26 +330,18 @@
     }
 
     @media (min-width: 768px) {
-      .tisch-flaeche {
-        background-size: cover;
-        min-height: 180vh;
-      }
-      .tisch-spalte {
-        padding-top: 64px;
-        gap: 76px;
-      }
       .karte-block {
-        width: 680px;
+        width: 340px;
       }
       .stapel-objekt {
-        width: 420px;
+        width: 330px;
       }
       .joint-objekt {
-        width: 390px;
+        width: 280px;
       }
       .bierdeckel-abschluss {
-        width: 480px;
-        height: 160px;
+        width: 400px;
+        height: 133px;
       }
     }
   </style>
@@ -375,7 +350,6 @@
   <main class="tisch-flaeche">
     <div class="tisch-spalte">
 
-      <!-- 1. GROSN SIMMA Karte -> E-Mail-Kontakt -->
       <div class="karte-block">
         <a
           href="mailto:servus@grosnsimma.de?subject=du%20bist%20dran"
@@ -389,43 +363,31 @@
         </a>
       </div>
 
-      <!-- 2. Kartenstapel mit Karomuster -> Blatt -->
       <button
         type="button"
         class="objekt-knopf stapel-objekt"
         data-oeffnen="ansicht-blatt"
         aria-label="Blatt – Siebdruck auf bayrischem Hanfpapier"
       >
-        <img
-          src="stapel.png"
-          data-freistellen="rand"
-          alt="Verdeckter Kartenstapel mit Karomuster"
-        />
+        <img src="stapel.png" alt="Verdeckter Kartenstapel mit Karomuster" />
         <span class="hover-tag">Blatt</span>
       </button>
 
-      <!-- 3. Joint -> Stoff -->
       <button
         type="button"
         class="objekt-knopf joint-objekt"
         data-oeffnen="ansicht-stoff"
         aria-label="Stoff – Siebdruck auf fairen Textilien"
       >
-        <img
-          src="joint.png"
-          data-freistellen="rand"
-          alt="Joint auf dem Wirtshaustisch"
-        />
+        <img src="joint.png" alt="Joint auf dem Wirtshaustisch" />
         <span class="hover-tag">Stoff</span>
       </button>
 
     </div>
 
-    <!-- 4. Bierdeckel unten zu 1/3 sichtbar, ohne doppelten Text -->
     <footer class="bierdeckel-abschluss">
       <img
         src="bierdeckel.png"
-        data-freistellen="rand"
         alt="Bierdeckel mit Impressum und Datenschutz"
         class="bierdeckel-bild"
       />
@@ -444,7 +406,6 @@
     </footer>
   </main>
 
-  <!-- Unterseite: Blatt -->
   <dialog id="ansicht-blatt" class="seite-dialog">
     <div class="dialog-kopf">
       <div>
@@ -467,7 +428,6 @@
     </div>
   </dialog>
 
-  <!-- Unterseite: Stoff -->
   <dialog id="ansicht-stoff" class="seite-dialog">
     <div class="dialog-kopf">
       <div>
@@ -490,7 +450,6 @@
     </div>
   </dialog>
 
-  <!-- Unterseite: Impressum -->
   <dialog id="ansicht-impressum" class="seite-dialog">
     <div class="dialog-kopf">
       <div>
@@ -513,7 +472,6 @@
     </div>
   </dialog>
 
-  <!-- Unterseite: Datenschutz -->
   <dialog id="ansicht-datenschutz" class="seite-dialog">
     <div class="dialog-kopf">
       <div>
@@ -539,95 +497,6 @@
   </dialog>
 
   <script>
-    // Entfernt äußere weiße Ränder von stapel.png, joint.png und bierdeckel.png direkt beim Laden,
-    // ohne weiße Innenflächen der Spielkarten anzutasten (Flood-Fill vom Bildrand).
-    function entfernWeissenRand(img) {
-      if (!img.naturalWidth || !img.naturalHeight) return;
-      const w = img.naturalWidth;
-      const h = img.naturalHeight;
-      const canvas = document.createElement('canvas');
-      canvas.width = w;
-      canvas.height = h;
-      const ctx = canvas.getContext('2d');
-      ctx.drawImage(img, 0, 0);
-
-      const imageData = ctx.getImageData(0, 0, w, h);
-      const data = imageData.data;
-      const visited = new Uint8Array(w * h);
-      const queue = new Int32Array(w * h);
-      let head = 0;
-      let tail = 0;
-
-      function istHell(idx) {
-        const p = idx * 4;
-        const r = data[p], g = data[p + 1], b = data[p + 2];
-        const min = Math.min(r, g, b);
-        const max = Math.max(r, g, b);
-        return min > 218 && (max - min) < 18;
-      }
-
-      function enqueue(x, y) {
-        if (x < 0 || x >= w || y < 0 || y >= h) return;
-        const idx = y * w + x;
-        if (visited[idx]) return;
-        visited[idx] = 1;
-        if (istHell(idx)) {
-          queue[tail++] = idx;
-        }
-      }
-
-      for (let x = 0; x < w; x++) {
-        enqueue(x, 0);
-        enqueue(x, h - 1);
-      }
-      for (let y = 0; y < h; y++) {
-        enqueue(0, y);
-        enqueue(w - 1, y);
-      }
-
-      while (head < tail) {
-        const idx = queue[head++];
-        const x = idx % w;
-        const y = (idx - x) / w;
-        data[idx * 4 + 3] = 0;
-        enqueue(x + 1, y);
-        enqueue(x - 1, y);
-        enqueue(x, y + 1);
-        enqueue(x, y - 1);
-      }
-
-      // Weiche Kante an Übergangspixeln
-      for (let y = 1; y < h - 1; y++) {
-        for (let x = 1; x < w - 1; x++) {
-          const idx = y * w + x;
-          if (data[idx * 4 + 3] === 0) continue;
-          const nTransparent =
-            (data[(idx - 1) * 4 + 3] === 0 ? 1 : 0) +
-            (data[(idx + 1) * 4 + 3] === 0 ? 1 : 0) +
-            (data[(idx - w) * 4 + 3] === 0 ? 1 : 0) +
-            (data[(idx + w) * 4 + 3] === 0 ? 1 : 0);
-          if (nTransparent > 0) {
-            const lum = (data[idx * 4] + data[idx * 4 + 1] + data[idx * 4 + 2]) / 3;
-            if (lum > 205) {
-              data[idx * 4 + 3] = Math.max(0, Math.round(255 * (1 - (lum - 205) / 45)));
-            }
-          }
-        }
-      }
-
-      ctx.putImageData(imageData, 0, 0);
-      img.src = canvas.toDataURL('image/png');
-    }
-
-    document.querySelectorAll('img[data-freistellen]').forEach((img) => {
-      if (img.complete) {
-        entfernWeissenRand(img);
-      } else {
-        img.addEventListener('load', () => entfernWeissenRand(img), { once: true });
-      }
-    });
-
-    // Unterseiten öffnen & schließen
     document.querySelectorAll('[data-oeffnen]').forEach((knopf) => {
       knopf.addEventListener('click', () => {
         const dlg = document.getElementById(knopf.getAttribute('data-oeffnen'));
