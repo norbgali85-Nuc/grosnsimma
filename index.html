@@ -38,20 +38,19 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      justify-content: space-between;
     }
 
-    .tisch-spalte {
+    /* Startansicht: beim Betreten nur die GROSN SIMMA Karte sichtbar */
+    .karte-start-bereich {
       width: 100%;
-      max-width: 580px;
-      padding: 36px 14px 0;
+      min-height: 100dvh;
+      padding: 72px 16px 88px;
       display: flex;
-      flex-direction: column;
       align-items: center;
-      gap: 64px;
+      justify-content: center;
+      flex-shrink: 0;
     }
 
-    /* 1. GROSN SIMMA Karte: oben mittig am Handy-Display */
     .karte-block {
       width: min(88vw, 385px);
       margin-inline: auto;
@@ -86,6 +85,17 @@
       filter:
         drop-shadow(0 0 11px rgba(59, 122, 71, 0.65))
         drop-shadow(0 12px 18px rgba(20, 16, 12, 0.35));
+    }
+
+    /* Scrollbarer Bereich ab dem Kartenstapel */
+    .tisch-spalte {
+      width: 100%;
+      max-width: 580px;
+      padding: 48px 14px 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 112px;
     }
 
     .objekt-knopf {
@@ -135,27 +145,27 @@
       transform: rotate(-0.5deg) scale(1.015);
     }
 
-    /* 3. Joint: senkrecht/leicht schräg, schlank & länger gezogen ohne breiter zu wirken */
+    /* 3. Joint: deutlich länger gezogen, schlank ohne Verbreiterung, mit extra Abstand */
     .joint-objekt {
       width: auto;
-      height: clamp(210px, 46vw, 265px);
-      transform: translateX(12px) rotate(-36deg);
-      margin-block: 14px;
+      height: clamp(260px, 58vw, 340px);
+      transform: translateX(14px) rotate(-36deg);
+      margin-block: 42px;
     }
 
     .joint-objekt:hover,
     .joint-objekt:focus-visible {
-      transform: translateX(12px) rotate(-34deg) scale(1.02);
+      transform: translateX(14px) rotate(-34deg) scale(1.02);
     }
 
     .joint-objekt img {
       width: auto;
       height: 100%;
-      transform: scaleY(1.24);
+      transform: scaleY(1.42);
       transform-origin: center center;
     }
 
-    /* 4. Bierdeckel: mobil über die ganze Breite, sauberer Abstand nach dem Joint */
+    /* 4. Bierdeckel: mobil über die ganze Breite, großer Abstand nach dem Joint */
     .bierdeckel-abschluss {
       position: relative;
       width: 100vw;
@@ -163,7 +173,7 @@
       max-width: 520px;
       max-height: 239px;
       overflow: hidden;
-      margin-top: 56px;
+      margin-top: 124px;
       flex-shrink: 0;
     }
 
@@ -178,9 +188,9 @@
     /* Klickflächen passgenau über Impressum und Datenschutz */
     .kuli-hotspot {
       position: absolute;
-      top: 14%;
-      width: 34%;
-      height: 34%;
+      top: 16%;
+      width: 31%;
+      height: 32%;
       background: transparent;
       border: none;
       border-radius: 999px;
@@ -203,7 +213,8 @@
     }
 
     .hotspot-datenschutz {
-      right: 11%;
+      right: 16%;
+      top: 18%;
       transform: rotate(28deg);
     }
 
@@ -327,9 +338,12 @@
     }
 
     @media (min-width: 768px) {
+      .karte-start-bereich {
+        padding: 88px 24px 104px;
+      }
       .tisch-spalte {
-        padding-top: 44px;
-        gap: 72px;
+        padding-top: 64px;
+        gap: 128px;
       }
       .karte-block {
         width: 390px;
@@ -338,20 +352,21 @@
         width: 410px;
       }
       .joint-objekt {
-        height: 265px;
+        height: 325px;
+        margin-block: 48px;
       }
       .bierdeckel-abschluss {
         width: 460px;
         height: 212px;
-        margin-top: 64px;
+        margin-top: 136px;
       }
     }
   </style>
 </head>
 <body>
   <main class="tisch-flaeche">
-    <div class="tisch-spalte">
 
+    <section class="karte-start-bereich" aria-label="Startkarte">
       <div class="karte-block">
         <a
           href="mailto:servus@grosnsimma.de?subject=du%20bist%20dran"
@@ -364,6 +379,9 @@
           />
         </a>
       </div>
+    </section>
+
+    <div class="tisch-spalte">
 
       <button
         type="button"
