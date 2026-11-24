@@ -7,7 +7,7 @@
   <style>
     :root {
       --grasgruen: #3b7a47;
-      --grasgruen-sanft: rgba(59, 122, 71, 0.24);
+      --grasgruen-schein: rgba(59, 122, 71, 0.32);
       --papier: #f5f0e4;
       --dunkel: #1b1815;
     }
@@ -44,17 +44,16 @@
     .tisch-spalte {
       width: 100%;
       max-width: 560px;
-      padding: 24px 16px 0;
+      padding: 18px 12px 0;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 36px;
+      gap: 24px;
     }
 
-    /* 1. GROSN SIMMA Karte: mobil fast displayfüllend, gleiche Breite wie Stapel */
-    .karte-block,
-    .stapel-objekt {
-      width: min(92vw, 390px);
+    /* 1. GROSN SIMMA Karte & 2. Kartenstapel: optisch gleiche Größe */
+    .karte-block {
+      width: min(88vw, 370px);
     }
 
     .karte-mail-link {
@@ -84,11 +83,10 @@
     .karte-mail-link:hover img,
     .karte-mail-link:focus-visible img {
       filter:
-        drop-shadow(0 0 10px rgba(59, 122, 71, 0.62))
+        drop-shadow(0 0 11px rgba(59, 122, 71, 0.65))
         drop-shadow(0 12px 18px rgba(20, 16, 12, 0.35));
     }
 
-    /* Gemeinsamer Stil für klickbare Tisch-Objekte (ohne Hover-Text) */
     .objekt-knopf {
       position: relative;
       background: none;
@@ -125,8 +123,9 @@
         drop-shadow(0 12px 18px rgba(20, 16, 12, 0.34));
     }
 
-    /* 2. Kartenstapel: gleiche Größe wie Karte */
+    /* Stapel an die Kartengröße angeglichen */
     .stapel-objekt {
+      width: min(74vw, 310px);
       transform: rotate(-1.5deg);
     }
 
@@ -135,16 +134,16 @@
       transform: rotate(-0.5deg) scale(1.015);
     }
 
-    /* 3. Joint: hochkantiger & etwa auf Kartenlänge */
+    /* 3. Joint: deutlicher, hochkantiger & auf Kartenlänge */
     .joint-objekt {
       width: auto;
-      height: clamp(220px, 46vw, 290px);
-      transform: rotate(-18deg);
+      height: clamp(250px, 56vw, 320px);
+      transform: rotate(-28deg);
     }
 
     .joint-objekt:hover,
     .joint-objekt:focus-visible {
-      transform: rotate(-16deg) scale(1.025);
+      transform: rotate(-25deg) scale(1.025);
     }
 
     .joint-objekt img {
@@ -152,13 +151,13 @@
       height: 100%;
     }
 
-    /* 4. Bierdeckel: kürzerer Abstand nach dem Joint, weiter hochgeschoben */
+    /* 4. Bierdeckel: näher am Joint, weiter hochgeschoben */
     .bierdeckel-abschluss {
       position: relative;
       width: min(92vw, 410px);
-      height: calc(min(92vw, 410px) * 0.44);
+      height: calc(min(92vw, 410px) * 0.48);
       overflow: hidden;
-      margin-top: 18px;
+      margin-top: 6px;
       flex-shrink: 0;
     }
 
@@ -170,12 +169,12 @@
       -webkit-user-drag: none;
     }
 
-    /* Klickflächen passgenau auf Impressum und Datenschutz */
+    /* Klickflächen passgenau auf Impressum und Datenschutz, nur grüner Schein */
     .kuli-hotspot {
       position: absolute;
       top: 12%;
-      width: 32%;
-      height: 36%;
+      width: 28%;
+      height: 30%;
       background: transparent;
       border: none;
       border-radius: 999px;
@@ -186,20 +185,20 @@
 
     .kuli-hotspot:hover,
     .kuli-hotspot:focus-visible {
-      background-color: var(--grasgruen-sanft);
-      box-shadow: 0 0 12px rgba(59, 122, 71, 0.55);
+      background-color: var(--grasgruen-schein);
+      box-shadow: 0 0 14px var(--grasgruen-schein);
       text-decoration: none;
       outline: none;
     }
 
     .hotspot-impressum {
-      left: 16%;
-      transform: rotate(-16deg);
+      left: 19%;
+      transform: rotate(-22deg);
     }
 
     .hotspot-datenschutz {
-      right: 15%;
-      transform: rotate(16deg);
+      right: 17%;
+      transform: rotate(22deg);
     }
 
     /* Dialoge für Blatt, Stoff, Impressum & Datenschutz */
@@ -323,19 +322,21 @@
 
     @media (min-width: 768px) {
       .tisch-spalte {
-        padding-top: 40px;
-        gap: 44px;
+        padding-top: 32px;
+        gap: 32px;
       }
-      .karte-block,
+      .karte-block {
+        width: 410px;
+      }
       .stapel-objekt {
-        width: 390px;
+        width: 340px;
       }
       .joint-objekt {
-        height: 280px;
+        height: 310px;
       }
       .bierdeckel-abschluss {
         width: 420px;
-        height: 185px;
+        height: 195px;
       }
     }
   </style>
