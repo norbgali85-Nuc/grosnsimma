@@ -51,7 +51,7 @@
       gap: 24px;
     }
 
-    /* 1. GROSN SIMMA Karte & 2. Kartenstapel: optisch gleiche Größe */
+    /* 1. GROSN SIMMA Karte & 2. Kartenstapel: gleiche Größe */
     .karte-block {
       width: min(88vw, 370px);
     }
@@ -123,7 +123,6 @@
         drop-shadow(0 12px 18px rgba(20, 16, 12, 0.34));
     }
 
-    /* Stapel an die Kartengröße angeglichen */
     .stapel-objekt {
       width: min(74vw, 310px);
       transform: rotate(-1.5deg);
@@ -134,7 +133,7 @@
       transform: rotate(-0.5deg) scale(1.015);
     }
 
-    /* 3. Joint: deutlicher, hochkantiger & auf Kartenlänge */
+    /* 3. Joint: hochkantiger & etwa auf Kartenlänge */
     .joint-objekt {
       width: auto;
       height: clamp(250px, 56vw, 320px);
@@ -151,13 +150,13 @@
       height: 100%;
     }
 
-    /* 4. Bierdeckel: näher am Joint, weiter hochgeschoben */
+    /* 4. Bierdeckel: in Relation zu Karte/Stapel/Joint angepasst, nah am Joint */
     .bierdeckel-abschluss {
       position: relative;
-      width: min(92vw, 410px);
-      height: calc(min(92vw, 410px) * 0.48);
+      width: min(78vw, 340px);
+      height: calc(min(78vw, 340px) * 0.46);
       overflow: hidden;
-      margin-top: 6px;
+      margin-top: 8px;
       flex-shrink: 0;
     }
 
@@ -169,12 +168,12 @@
       -webkit-user-drag: none;
     }
 
-    /* Klickflächen passgenau auf Impressum und Datenschutz, nur grüner Schein */
+    /* Klickflächen passgenau über Kugelschreiber-Impressum & Kugelschreiber-Datenschutz */
     .kuli-hotspot {
       position: absolute;
-      top: 12%;
-      width: 28%;
-      height: 30%;
+      top: 14%;
+      width: 34%;
+      height: 34%;
       background: transparent;
       border: none;
       border-radius: 999px;
@@ -186,19 +185,19 @@
     .kuli-hotspot:hover,
     .kuli-hotspot:focus-visible {
       background-color: var(--grasgruen-schein);
-      box-shadow: 0 0 14px var(--grasgruen-schein);
+      box-shadow: 0 0 12px var(--grasgruen-schein);
       text-decoration: none;
       outline: none;
     }
 
     .hotspot-impressum {
-      left: 19%;
-      transform: rotate(-22deg);
+      left: 11%;
+      transform: rotate(-28deg);
     }
 
     .hotspot-datenschutz {
-      right: 17%;
-      transform: rotate(22deg);
+      right: 11%;
+      transform: rotate(28deg);
     }
 
     /* Dialoge für Blatt, Stoff, Impressum & Datenschutz */
@@ -335,8 +334,8 @@
         height: 310px;
       }
       .bierdeckel-abschluss {
-        width: 420px;
-        height: 195px;
+        width: 350px;
+        height: 162px;
       }
     }
   </style>
