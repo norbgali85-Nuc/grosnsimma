@@ -30,7 +30,7 @@
     .tisch-flaeche {
       position: relative;
       width: 100%;
-      min-height: 170vh;
+      min-height: 100dvh;
       background-color: #b7aea0;
       background-image: url('tisch.jpg');
       background-size: cover;
@@ -38,22 +38,23 @@
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: space-between;
     }
 
     .tisch-spalte {
       width: 100%;
-      max-width: 540px;
-      padding: 44px 20px 0;
+      max-width: 560px;
+      padding: 24px 16px 0;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 56px;
-      flex: 1 0 auto;
+      gap: 36px;
     }
 
-    /* 1. GROSN SIMMA Karte -> E-Mail-Kontakt */
-    .karte-block {
-      width: min(76vw, 310px);
+    /* 1. GROSN SIMMA Karte: mobil fast displayfüllend, gleiche Breite wie Stapel */
+    .karte-block,
+    .stapel-objekt {
+      width: min(92vw, 390px);
     }
 
     .karte-mail-link {
@@ -65,7 +66,7 @@
 
     .karte-mail-link:hover,
     .karte-mail-link:focus-visible {
-      transform: translateY(-2px) scale(1.015);
+      transform: translateY(-2px) scale(1.012);
       text-decoration: none;
       outline: none;
     }
@@ -83,11 +84,11 @@
     .karte-mail-link:hover img,
     .karte-mail-link:focus-visible img {
       filter:
-        drop-shadow(0 0 8px rgba(59, 122, 71, 0.55))
+        drop-shadow(0 0 10px rgba(59, 122, 71, 0.62))
         drop-shadow(0 12px 18px rgba(20, 16, 12, 0.35));
     }
 
-    /* Klickbare Tisch-Objekte (Blatt & Stoff) */
+    /* Gemeinsamer Stil für klickbare Tisch-Objekte (ohne Hover-Text) */
     .objekt-knopf {
       position: relative;
       background: none;
@@ -96,14 +97,13 @@
       cursor: pointer;
       text-decoration: none;
       display: inline-flex;
-      flex-direction: column;
       align-items: center;
+      justify-content: center;
       transition: transform 0.2s ease;
     }
 
     .objekt-knopf:hover,
     .objekt-knopf:focus-visible {
-      transform: scale(1.025);
       text-decoration: none;
       outline: none;
     }
@@ -121,54 +121,44 @@
     .objekt-knopf:hover img,
     .objekt-knopf:focus-visible img {
       filter:
-        drop-shadow(0 0 8px rgba(59, 122, 71, 0.58))
+        drop-shadow(0 0 11px rgba(59, 122, 71, 0.65))
         drop-shadow(0 12px 18px rgba(20, 16, 12, 0.34));
     }
 
-    /* 2. Kartenstapel -> Unterseite Blatt */
+    /* 2. Kartenstapel: gleiche Größe wie Karte */
     .stapel-objekt {
-      width: min(74vw, 300px);
-      transform: rotate(-2deg);
+      transform: rotate(-1.5deg);
     }
 
-    /* 3. Joint -> Unterseite Stoff */
+    .stapel-objekt:hover,
+    .stapel-objekt:focus-visible {
+      transform: rotate(-0.5deg) scale(1.015);
+    }
+
+    /* 3. Joint: hochkantiger & etwa auf Kartenlänge */
     .joint-objekt {
-      width: min(64vw, 260px);
-      transform: rotate(-10deg);
+      width: auto;
+      height: clamp(220px, 46vw, 290px);
+      transform: rotate(-18deg);
     }
 
-    /* Ruhiges Grasgrün beim Hover, nie unterstrichen */
-    .hover-tag {
-      margin-top: 8px;
-      padding: 4px 12px;
-      border-radius: 999px;
-      background-color: var(--grasgruen);
-      color: #f4f9f5;
-      font-size: 0.92rem;
-      font-weight: 700;
-      letter-spacing: 0.03em;
-      text-decoration: none;
-      opacity: 0;
-      transform: translateY(4px);
-      transition: opacity 0.18s ease, transform 0.18s ease;
-      pointer-events: none;
-      white-space: nowrap;
+    .joint-objekt:hover,
+    .joint-objekt:focus-visible {
+      transform: rotate(-16deg) scale(1.025);
     }
 
-    .objekt-knopf:hover .hover-tag,
-    .objekt-knopf:focus-visible .hover-tag {
-      opacity: 1;
-      transform: translateY(0);
-      text-decoration: none;
+    .joint-objekt img {
+      width: auto;
+      height: 100%;
     }
 
-    /* 4. Bierdeckel unten zu 1/3 sichtbar, dann Seitenende */
+    /* 4. Bierdeckel: kürzerer Abstand nach dem Joint, weiter hochgeschoben */
     .bierdeckel-abschluss {
       position: relative;
-      width: min(88vw, 380px);
-      height: calc(min(88vw, 380px) / 3);
+      width: min(92vw, 410px);
+      height: calc(min(92vw, 410px) * 0.44);
       overflow: hidden;
-      margin-top: 64px;
+      margin-top: 18px;
       flex-shrink: 0;
     }
 
@@ -180,33 +170,35 @@
       -webkit-user-drag: none;
     }
 
+    /* Klickflächen passgenau auf Impressum und Datenschutz */
     .kuli-hotspot {
       position: absolute;
-      top: 8%;
-      width: 34%;
-      height: 48%;
+      top: 12%;
+      width: 32%;
+      height: 36%;
       background: transparent;
       border: none;
       border-radius: 999px;
       cursor: pointer;
       text-decoration: none;
-      transition: background-color 0.2s ease;
+      transition: background-color 0.2s ease, box-shadow 0.2s ease;
     }
 
     .kuli-hotspot:hover,
     .kuli-hotspot:focus-visible {
       background-color: var(--grasgruen-sanft);
+      box-shadow: 0 0 12px rgba(59, 122, 71, 0.55);
       text-decoration: none;
       outline: none;
     }
 
     .hotspot-impressum {
-      left: 14%;
+      left: 16%;
       transform: rotate(-16deg);
     }
 
     .hotspot-datenschutz {
-      right: 13%;
+      right: 15%;
       transform: rotate(16deg);
     }
 
@@ -330,18 +322,20 @@
     }
 
     @media (min-width: 768px) {
-      .karte-block {
-        width: 340px;
+      .tisch-spalte {
+        padding-top: 40px;
+        gap: 44px;
       }
+      .karte-block,
       .stapel-objekt {
-        width: 330px;
+        width: 390px;
       }
       .joint-objekt {
-        width: 280px;
+        height: 280px;
       }
       .bierdeckel-abschluss {
-        width: 400px;
-        height: 133px;
+        width: 420px;
+        height: 185px;
       }
     }
   </style>
@@ -370,7 +364,6 @@
         aria-label="Blatt – Siebdruck auf bayrischem Hanfpapier"
       >
         <img src="stapel.png" alt="Verdeckter Kartenstapel mit Karomuster" />
-        <span class="hover-tag">Blatt</span>
       </button>
 
       <button
@@ -380,7 +373,6 @@
         aria-label="Stoff – Siebdruck auf fairen Textilien"
       >
         <img src="joint.png" alt="Joint auf dem Wirtshaustisch" />
-        <span class="hover-tag">Stoff</span>
       </button>
 
     </div>
