@@ -4,11 +4,11 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GROSN SIMMA – 2x ziehen | bayrisch Blatt und Stoff</title>
-  <meta name="description" content="GROSN SIMMA – 2x ziehen. bayrisch Blatt und Stoff. Siebdruck auf fairen Textilien und bayerischem Hanfpapier." />
+  <meta name="description" content="GROSN SIMMA – 2x ziehen. bayrisch Blatt und Stoff. Drucke auf bayerischem Hanfpapier und fairen Textilien." />
   <style>
     :root {
       --grasgruen: #2e6f3e;
-      --grasgruen-hell: #e8f2ea;
+      --grasgruen-hell: #eef6f0;
       --kuli-blau: #193b7a;
       --creme: #f7f3e8;
       --tinte: #1c1915;
@@ -83,6 +83,39 @@
         drop-shadow(0 3px 6px rgba(20, 16, 12, 0.22));
       user-select: none;
       -webkit-user-drag: none;
+    }
+
+    /* Bierflasche rechts oben angeschnitten */
+    .flasche-rechts {
+      position: absolute;
+      top: 16vh;
+      right: -34px;
+      width: min(36vw, 155px);
+      aspect-ratio: 1 / 1.9;
+      border-radius: 36px 36px 26px 26px;
+      background: radial-gradient(circle at 30% 35%, #4a3726 0%, #241910 65%, #140e09 100%);
+      box-shadow: -14px 18px 28px rgba(15, 11, 7, 0.45);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transform: rotate(-8deg);
+      z-index: 8;
+      pointer-events: none;
+    }
+
+    .flasche-etikett {
+      width: 82%;
+      padding: 12px 8px;
+      background: #efe6cf;
+      border: 2px solid #6b4e2e;
+      border-radius: 10px;
+      text-align: center;
+      font-size: clamp(10px, 2.6vw, 13px);
+      font-weight: 700;
+      line-height: 1.25;
+      color: #3a2714;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
     }
 
     /* Scrollbare Objekte auf dem Tisch */
@@ -452,6 +485,10 @@
         background-size: cover;
         min-height: 165vh;
       }
+      .flasche-rechts {
+        right: 6vw;
+        width: 170px;
+      }
       .objekt-stoff {
         margin-right: 20px;
       }
@@ -475,6 +512,13 @@
           alt="GROSN SIMMA – 2x ziehen, bayrisch Blatt und Stoff"
         />
       </a>
+    </div>
+
+    <!-- Bierflasche mit Satire-Etikett -->
+    <div class="flasche-rechts" aria-hidden="true">
+      <div class="flasche-etikett">
+        Bier Bräu<br />Brauerei<br />Bier
+      </div>
     </div>
 
     <!-- 2. Scrollbare Objekte auf der Resopal-Platte -->
