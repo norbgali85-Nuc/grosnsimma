@@ -45,7 +45,7 @@
     .karte-start-bereich {
       width: 100%;
       min-height: 100dvh;
-      padding: 80px 16px 112px;
+      padding: 80px 16px 148px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -96,7 +96,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 112px;
+      gap: 148px;
     }
 
     .objekt-knopf {
@@ -146,10 +146,10 @@
       transform: rotate(-0.5deg) scale(1.015);
     }
 
-    /* 3. Joint: vollständig, schlank & in der Länge gestreckt ohne Verbreiterung */
+    /* 3. Joint: unverzerrt, natürliche Schatten, Tip/Filter-Bereich weich schmaler */
     .joint-objekt {
       width: auto;
-      height: clamp(260px, 58vw, 340px);
+      height: clamp(290px, 68vw, 390px);
       transform: translateX(14px) rotate(-36deg);
     }
 
@@ -158,14 +158,34 @@
       transform: translateX(14px) rotate(-34deg) scale(1.02);
     }
 
-    .joint-objekt img {
-      width: auto;
+    .joint-rahmen {
+      position: relative;
       height: 100%;
-      transform: scaleY(1.42);
-      transform-origin: center center;
+      width: auto;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
     }
 
-    /* 4. Bierdeckel: mobil links und rechts über die Seite hinaus, gleicher Abstand davor */
+    .joint-rahmen img {
+      width: auto;
+      height: 100%;
+    }
+
+    /* Weiche Anpassung entlang der beiden Tip-Seiten (unten links im Originalbild), ohne Schnittkante */
+    .joint-tip-schmaler {
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 48%;
+      height: 42%;
+      pointer-events: none;
+      background:
+        radial-gradient(ellipse at 12% 88%, rgba(183, 174, 160, 0.55) 0%, rgba(183, 174, 160, 0) 70%);
+      mix-blend-mode: normal;
+    }
+
+    /* 4. Bierdeckel: mobil links und rechts über die Seite hinaus, einheitlicher Abstand davor */
     .bierdeckel-abschluss {
       position: relative;
       width: 118vw;
@@ -173,7 +193,7 @@
       max-width: 620px;
       max-height: 285px;
       overflow: hidden;
-      margin-top: 112px;
+      margin-top: 148px;
       flex-shrink: 0;
     }
 
@@ -339,11 +359,11 @@
 
     @media (min-width: 768px) {
       .karte-start-bereich {
-        padding: 96px 24px 128px;
+        padding: 96px 24px 160px;
       }
       .tisch-spalte {
         padding-top: 0;
-        gap: 128px;
+        gap: 160px;
       }
       .karte-block {
         width: 390px;
@@ -352,12 +372,12 @@
         width: 410px;
       }
       .joint-objekt {
-        height: 325px;
+        height: 365px;
       }
       .bierdeckel-abschluss {
         width: 520px;
         height: 239px;
-        margin-top: 128px;
+        margin-top: 160px;
       }
     }
   </style>
@@ -397,7 +417,10 @@
         data-oeffnen="ansicht-stoff"
         aria-label="Stoff – Siebdruck auf fairen Textilien"
       >
-        <img src="joint.png" alt="Joint auf dem Wirtshaustisch" />
+        <span class="joint-rahmen">
+          <img src="joint.png" alt="Joint auf dem Wirtshaustisch" />
+          <span class="joint-tip-schmaler" aria-hidden="true"></span>
+        </span>
       </button>
 
     </div>
