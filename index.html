@@ -146,7 +146,7 @@
       transform: rotate(-0.5deg) scale(1.015);
     }
 
-    /* 3. Joint: unverzerrt, natürliche Schatten, Tip/Filter-Bereich weich schmaler */
+    /* 3. Joint: sauber & unverfälscht mit natürlichen Schatten */
     .joint-objekt {
       width: auto;
       height: clamp(290px, 68vw, 390px);
@@ -158,31 +158,9 @@
       transform: translateX(14px) rotate(-34deg) scale(1.02);
     }
 
-    .joint-rahmen {
-      position: relative;
-      height: 100%;
-      width: auto;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .joint-rahmen img {
+    .joint-objekt img {
       width: auto;
       height: 100%;
-    }
-
-    /* Weiche Anpassung entlang der beiden Tip-Seiten (unten links im Originalbild), ohne Schnittkante */
-    .joint-tip-schmaler {
-      position: absolute;
-      left: 0;
-      bottom: 0;
-      width: 48%;
-      height: 42%;
-      pointer-events: none;
-      background:
-        radial-gradient(ellipse at 12% 88%, rgba(183, 174, 160, 0.55) 0%, rgba(183, 174, 160, 0) 70%);
-      mix-blend-mode: normal;
     }
 
     /* 4. Bierdeckel: mobil links und rechts über die Seite hinaus, einheitlicher Abstand davor */
@@ -417,10 +395,7 @@
         data-oeffnen="ansicht-stoff"
         aria-label="Stoff – Siebdruck auf fairen Textilien"
       >
-        <span class="joint-rahmen">
-          <img src="joint.png" alt="Joint auf dem Wirtshaustisch" />
-          <span class="joint-tip-schmaler" aria-hidden="true"></span>
-        </span>
+        <img src="joint.png" alt="Joint auf dem Wirtshaustisch" />
       </button>
 
     </div>
